@@ -246,7 +246,7 @@ const LINKS = {
   error403: "https://error-403-platform.github.io", error403Label: "error-403-platform.github.io",
   github: "https://github.com/error-403-platform/error-403-platform.github.io", githubLabel: "github.com/error-403-platform",
   ad: "https://drive.google.com/file/d/1cIZTpKAbqTKYLzJ7UqQUL9_8t8WzdQJY/view?usp=sharing",
-  atoz: "https://instagram.com/_mah_sheed__",  /* replace with the direct link of the "AtoZ design" highlight */
+  atoz: "https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDk2NjM3ODMxMjE3MTM3?story_media_id=2632753943900743549_29891053621",
   farzin: "https://drive.google.com/file/d/1T8YLfjuQrg4_df43LY8ti96NX7tBaZx8/view?usp=sharing"
 };
 const T = {
@@ -729,11 +729,11 @@ function rebuildWorld(){got.clear();save();cleared=false;clearK=0;squares.forEac
 function bodyFor(room){
   const t=T[lang];
   if(room==="about")return t.about.body;
-  if(room==="projects"){const cols=[["#35e0d0","rgba(53,224,208,.4)"],["#ff4b1f","rgba(255,75,31,.4)"],["#d9a531","rgba(217,165,49,.4)"],["#f2ebe0","rgba(242,235,224,.3)"]];
+  if(room==="projects"){const cols=[["#f2ebe0","rgba(242,235,224,.28)"]];
     const num=i=>lang==="fa"?String(i+1).padStart(2,"0").replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]):String(i+1).padStart(2,"0");
-    const mine=MYWORK.map((m,i)=>{const [cc,gg]=cols[(i+1)%4],[nm,d]=m[lang],inner=`<svg viewBox="0 0 40 40" aria-hidden="true">${m.icon}</svg><span class="nm">${esc(nm)}</span><span class="ds">${esc(d)}</span>`;
+    const mine=MYWORK.map((m,i)=>{const [cc,gg]=cols[0],[nm,d]=m[lang],inner=`<svg viewBox="0 0 40 40" aria-hidden="true">${m.icon}</svg><span class="nm">${esc(nm)}</span><span class="ds">${esc(d)}</span>`;
       return m.url?`<a class="ic" style="--c:${cc};--g:${gg}" href="${esc(m.url)}" target="_blank" rel="noopener" title="${esc(d)}">${inner}<span class="tg">${m.tag} ↗</span></a>`:`<div class="ic" style="--c:${cc};--g:${gg};opacity:.7">${inner}<span class="tg">${t.soon}</span></div>`}).join("");
-    return `<div class="sec">${t.mineH}</div><div class="icons ptiles">${mine}</div><div class="sec">${t.collabH}</div><p class="subt">${t.collabSub}</p><div class="icons ptiles">${COLLABS.map((c,i)=>{const [cc,gg]=cols[i%4],nm=c.title||`${t.collab} ${num(i)}`,d=c[lang]||"";
+    return `<div class="sec">${t.mineH}</div><div class="icons ptiles">${mine}</div><div class="sec">${t.collabH}</div><p class="subt">${t.collabSub}</p><div class="icons ptiles">${COLLABS.map((c,i)=>{const [cc,gg]=cols[0],nm=c.title||`${t.collab} ${num(i)}`,d=c[lang]||"";
       return `<a class="ic" style="--c:${cc};--g:${gg}" href="${esc(c.url)}" target="_blank" rel="noopener" title="${esc(d||nm)}"><svg viewBox="0 0 40 40" aria-hidden="true">${CICONS[i%CICONS.length]}</svg><span class="nm">${esc(nm)}</span>${c.artist?`<span class="tg">${esc(c.artist)}</span>`:""}${d?`<span class="ds">${esc(d)}</span>`:`<span class="tg">${t.watch} ↗</span>`}</a>`}).join("")}</div>`}
   if(room==="work")return `<p>${t.work.intro}</p><div class="list">${t.work.items.map(([a,b])=>`<div class="row"><span class="v">${esc(a)}</span><span style="font-size:14px;opacity:.8">${esc(b)}</span></div>`).join("")}</div><p style="margin-top:16px"><b>${t.work.cta}</b></p>`;
   const L=t.lbl;
