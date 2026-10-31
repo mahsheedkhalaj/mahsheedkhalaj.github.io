@@ -3,10 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Mahshid's Collage World</title>
+<meta name="description" content="Mahshid Khalaj (مهشید خلج) is a multimedia artist, interactive designer, visual identity designer and game designer working with TouchDesigner, Blender, Unity and Adobe. Portfolio, CV, projects and collaborations.">
+<meta name="author" content="Mahshid Khalaj">
+<meta name="keywords" content="Mahshid Khalaj, مهشید خلج, multimedia artist, new media artist, interactive designer, TouchDesigner, visual identity designer, ERROR-403">
+<link rel="canonical" href="https://mahsheedkhalaj.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahsheedkhalaj.github.io/">
+<meta property="og:title" content="Mahshid Khalaj · Multimedia Artist">
+<meta property="og:description" content="Portfolio and CV of Mahshid Khalaj (مهشید خلج): multimedia artist, interactive designer and visual identity designer.">
+<meta property="og:image" content="https://mahsheedkhalaj.github.io/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Mahshid Khalaj","alternateName":"مهشید خلج","url":"https://mahsheedkhalaj.github.io/","image":"https://mahsheedkhalaj.github.io/og.jpg","jobTitle":"Multimedia Artist","description":"Multimedia artist, interactive designer, visual identity designer and game designer; co-founder of the audiovisual platform ERROR-403.","knowsAbout":["TouchDesigner","Blender","Unity","Adobe Photoshop","Adobe Illustrator","Adobe After Effects","Adobe Premiere Pro","Projection mapping","Motion design","Visual identity design"],"sameAs":["https://www.youtube.com/@mahsheedkhalaj","https://error-403-platform.github.io/"]}
+</script>
+<title>Mahshid Khalaj | Multimedia Artist · مهشید خلج</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;600;800&family=Rubik+Mono+One&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&family=Rubik+Mono+One&family=DM+Mono:wght@400;500&display=swap">
 <style>
 body{margin:0}
 /* Layout: full-screen dark canvas world built from Mahshid's own images; thin white frames, teal + orange glow. Single dark look. */
@@ -18,12 +31,16 @@ body{margin:0}
   --orange:#ff4b1f;
   --gold:#d9a531;
   --f-fa:"Vazirmatn",system-ui,sans-serif;
-  --f-fa-display:"Lalezar","Vazirmatn",system-ui,sans-serif;
+  --f-fa-display:"Vazirmatn",system-ui,sans-serif;
   --f-en-display:"Rubik Mono One","Arial Black",system-ui,sans-serif;
   --f-mono:"DM Mono",ui-monospace,Menlo,monospace;
   color-scheme:dark;
 }
 [hidden]{display:none!important}
+[lang=fa] body{font-weight:350}
+[lang=fa] .logo b,[lang=fa] .panel h2,[lang=fa] .cv h1{font-weight:250;letter-spacing:-.01em}
+[lang=fa] .panel p,[lang=fa] .cv p{font-weight:330;line-height:2}
+[lang=fa] b,[lang=fa] .tl b,[lang=fa] .ptiles .ic .nm,[lang=fa] .row .v,[lang=fa] .inl{font-weight:600}
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--bone);font-family:var(--f-fa);touch-action:none;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
@@ -40,15 +57,15 @@ body{background:var(--bg);color:var(--bone);font-family:var(--f-fa);touch-action
 .logo span{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
 .right{display:flex;gap:10px;align-items:center}
 .count{font-family:var(--f-mono);font-size:13px;color:var(--teal);border:1.5px solid var(--teal);padding:5px 10px;background:rgba(7,7,10,.75);font-variant-numeric:tabular-nums;box-shadow:0 0 12px rgba(53,224,208,.35)}
-.btn{font:700 14px var(--f-fa);background:transparent;color:var(--bone);border:1.5px solid var(--bone);padding:6px 13px;cursor:pointer;transition:background .15s,color .15s}
+.btn{font:500 14px var(--f-fa);background:transparent;color:var(--bone);border:1.5px solid var(--bone);padding:6px 13px;cursor:pointer;transition:background .15s,color .15s}
 .btn:hover{background:var(--bone);color:var(--bg)}
 button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
 .nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.nav button{font:700 13px var(--f-fa);background:rgba(7,7,10,.8);color:var(--bone);border:1.5px solid var(--bone);padding:6px 12px;cursor:pointer;transition:border-color .15s,color .15s}
+.nav button{font:500 13px var(--f-fa);background:rgba(7,7,10,.8);color:var(--bone);border:1.5px solid var(--bone);padding:6px 12px;cursor:pointer;transition:border-color .15s,color .15s}
 .nav button:hover{border-color:var(--teal);color:var(--teal)}
 .nav button.seen{border-color:var(--orange)}
 .nav button.seen::after{content:" ■";color:var(--orange)}
-.prompt{font:800 16px var(--f-fa);background:var(--orange);color:var(--bg);border:0;padding:10px 20px;cursor:pointer;box-shadow:0 0 22px rgba(255,75,31,.55);animation:bob 1s ease-in-out infinite alternate}
+.prompt{font:600 16px var(--f-fa);background:var(--orange);color:var(--bg);border:0;padding:10px 20px;cursor:pointer;box-shadow:0 0 22px rgba(255,75,31,.55);animation:bob 1s ease-in-out infinite alternate}
 @keyframes bob{to{transform:translateY(-5px)}}
 .hint{font-size:12px;opacity:.6;text-align:center;text-wrap:balance}
 
@@ -62,7 +79,7 @@ button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
 .card h1 em{font-style:normal;color:var(--teal)}
 .card p{font-size:15px;line-height:1.85;margin:0 0 14px;opacity:.9}
 .keys{font-family:var(--f-mono);font-size:12px;border:1px dashed rgba(242,235,224,.4);padding:10px 12px;margin-bottom:18px;line-height:1.9;white-space:pre-line;color:var(--teal)}
-.go{font:800 18px var(--f-fa);background:var(--teal);color:var(--bg);border:0;padding:12px 26px;cursor:pointer;box-shadow:0 0 24px rgba(53,224,208,.5)}
+.go{font:600 17px var(--f-fa);background:var(--teal);color:var(--bg);border:0;padding:12px 26px;cursor:pointer;box-shadow:0 0 24px rgba(53,224,208,.5)}
 .panel{width:min(760px,100%);max-height:86vh;overflow:auto;padding:28px clamp(18px,4vw,36px) 30px;animation:pop .28s cubic-bezier(.3,1.5,.5,1)}
 @keyframes pop{from{transform:scale(.9);opacity:0;filter:blur(6px)}}
 .panel h2{font-family:var(--f-fa-display);font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 6px;color:var(--bone);text-wrap:balance}
@@ -78,7 +95,7 @@ button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
 .pc .m{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
 .pc .d{font-size:14px;line-height:1.7;opacity:.85}
 .sec{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin:22px 0 4px}
-[lang=fa] .sec{font-family:var(--f-fa);letter-spacing:0;font-size:13px;font-weight:800}
+[lang=fa] .sec{font-family:var(--f-fa);letter-spacing:0;font-size:13px;font-weight:600}
 .sec:first-child{margin-top:4px}
 .subt{font-size:14px;opacity:.7;margin:0 0 12px}
 .icons{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:12px}
@@ -107,20 +124,70 @@ button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px}
 .chip{font-weight:600;font-size:13px;border:1.5px solid var(--teal);color:var(--teal);padding:4px 10px}
 .chip:nth-child(even){border-color:var(--orange);color:var(--orange)}
-.loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);color:var(--teal);z-index:40;background:var(--bg);letter-spacing:.2em}
+.loading{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;font-family:var(--f-mono);color:var(--bone);z-index:60;background:var(--bg);transition:opacity .6s}
+.loading.out{opacity:0;pointer-events:none}
+.ldgrid{display:grid;grid-template-columns:repeat(9,14px);gap:5px}
+.ldgrid i{width:14px;height:14px;border:1px solid rgba(242,235,224,.18);transition:background .25s,border-color .25s,box-shadow .25s;animation:ldp 1.6s ease-in-out infinite}
+.ldgrid i.on{background:var(--teal);border-color:var(--teal);box-shadow:0 0 10px rgba(53,224,208,.7)}
+.ldgrid i.on.o{background:var(--orange);border-color:var(--orange);box-shadow:0 0 10px rgba(255,75,31,.7)}
+.ldgrid i.on.g{background:var(--gold);border-color:var(--gold);box-shadow:0 0 10px rgba(217,165,49,.7)}
+@keyframes ldp{50%{transform:scale(.7)}}
+.ldtxt{display:flex;gap:18px;font-size:12px;letter-spacing:.3em;font-variant-numeric:tabular-nums}
+.ldtxt span:first-child{animation:ldg 2.4s steps(1) infinite}
+@keyframes ldg{0%,100%{transform:none;text-shadow:none}92%{transform:translateX(3px);text-shadow:-2px 0 var(--orange),2px 0 var(--teal)}96%{transform:translateX(-2px)}}
+.ldbar{width:min(240px,60vw);height:2px;background:rgba(242,235,224,.12)}
+.ldbar i{display:block;height:100%;width:0;background:var(--teal);box-shadow:0 0 8px var(--teal);transition:width .3s}
+.cvwrap{position:fixed;inset:0;z-index:30;overflow:auto;background:rgba(2,2,3,.86);backdrop-filter:blur(3px);display:flex;justify-content:center;align-items:flex-start;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.cv{position:relative;width:min(920px,100%);margin-block:auto;background:var(--panel);border:1.5px solid var(--bone);box-shadow:8px 8px 0 var(--orange),0 0 50px rgba(53,224,208,.12);padding:clamp(22px,4vw,44px);display:flex;flex-direction:column;gap:26px;animation:pop .5s cubic-bezier(.3,1.3,.5,1)}
+.cvtools{position:absolute;top:14px;inset-inline-end:14px;display:flex;gap:8px;align-items:center}
+.cvtools .close{position:static}
+.cvhead{display:flex;gap:24px;align-items:flex-end;padding-top:24px;border-bottom:1px dashed rgba(242,235,224,.25);padding-bottom:22px;flex-wrap:wrap}
+.cvfig{width:86px;height:auto;filter:drop-shadow(0 0 14px rgba(53,224,208,.35))}
+.cvid{min-width:0;flex:1}
+.cv h1{font-family:var(--f-en-display);font-weight:400;font-size:clamp(24px,4.4vw,40px);line-height:1.05;margin:4px 0 8px;text-wrap:balance}
+[lang=fa] .cv h1{font-family:var(--f-fa-display);font-size:clamp(36px,6vw,56px)}
+.cvrole{color:var(--teal);font-family:var(--f-mono);font-size:13px;letter-spacing:.08em}
+[lang=fa] .cvrole{font-family:var(--f-fa);letter-spacing:0;font-size:15px}
+.cvlinks{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-size:13px}
+.cvlinks a,.cvlinks span{color:var(--bone);text-decoration:none;border-bottom:1px solid var(--orange);word-break:break-all}
+.cvlinks a:hover{color:var(--teal)}
+.cvgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,4vw,44px)}
+@media (max-width:720px){.cvgrid{grid-template-columns:1fr}}
+.cv h3{font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin:0 0 10px}
+[lang=fa] .cv h3{font-family:var(--f-fa);font-weight:600;letter-spacing:0;font-size:14px}
+.cvmain h3:not(:first-child){margin-top:24px}
+.cvside h3:not(:first-child){margin-top:22px}
+.cv p{font-size:15px;line-height:1.85;margin:0;max-width:62ch;opacity:.92}
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.tl li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;border-inline-start:2px solid var(--teal);padding-inline-start:12px}
+.tl b{font-size:15px}
+.tl span{grid-column:1;font-size:13.5px;opacity:.72}
+.tl em{grid-row:1;grid-column:2;font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--teal);white-space:nowrap}
+[lang=fa] .tl em{font-family:var(--f-fa);font-size:13px}
+.cvlinks>*{unicode-bidi:isolate}
+.cvwb{margin-top:12px}
+.svc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:14px}
+.svc li::before{content:"▢ ";color:var(--teal)}
+.cvfoot{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;border-top:1px dashed rgba(242,235,224,.25);padding-top:20px}
+.cvfoot .keys{margin:0;flex:1;min-width:220px;font-size:12px;opacity:.8;border:0;padding:0;white-space:normal}
+.toast{position:fixed;left:50%;top:calc(90px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:15;background:rgba(14,14,18,.92);border:1.5px solid var(--teal);box-shadow:0 0 30px rgba(53,224,208,.3);padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;width:min(420px,calc(100% - 32px));animation:pop .5s}
+.toast b{font-size:16px}.toast span{font-size:14px;opacity:.8}
 @media (max-width:560px){.hint{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
 </head>
 <body>
+<noscript><h1>Mahshid Khalaj · مهشید خلج</h1><p>Multimedia artist, interactive designer, visual identity designer and game designer. Co-founder of ERROR-403.</p></noscript>
 <canvas id="c" aria-label="collage world"></canvas>
 
 <div class="hud top">
-  <div class="logo"><b data-k="name"></b><span>Visual Artist · Interactive Designer</span></div>
+  <div class="logo"><b data-k="name"></b><span>Multimedia Artist · Interactive Designer</span></div>
   <div class="right">
     <div class="count" id="count"></div>
-    
+    <button class="btn" id="cvbtn" type="button">CV</button>
+    <button class="btn" id="lang" type="button">فارسی</button>
   </div>
 </div>
 
@@ -135,13 +202,34 @@ button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
   <div class="hint" data-k="hint"></div>
 </div>
 
-<div class="intro" id="intro">
-  <div class="card">
-    <h1 id="introH"></h1>
-    <p data-k="introP"></p>
-    <div class="keys" data-k="keys"></div>
-    <button class="go" id="go" type="button" data-k="start"></button>
-  </div>
+<div class="cvwrap" id="intro" role="dialog" aria-modal="true" aria-labelledby="cvname">
+  <article class="cv">
+    <div class="cvtools"><button class="btn" id="cvlang" type="button">فارسی</button><button class="close cvx" id="cvclose" type="button" aria-label="close">✕</button></div>
+    <header class="cvhead">
+      <img class="cvfig" id="cvfig" alt="">
+      <div class="cvid">
+        <div class="kicker">CURRICULUM VITAE</div>
+        <h1 id="cvname"></h1>
+        <div class="cvrole" id="cvrole"></div>
+        <div class="cvlinks" id="cvlinks"></div>
+      </div>
+    </header>
+    <div class="cvgrid">
+      <section class="cvmain">
+        <h3 id="cvProfileH"></h3><p id="cvProfile"></p>
+        <h3 id="cvExpH"></h3><ul class="tl" id="cvExp"></ul>
+        <h3 id="cvWorkH"></h3><p id="cvWorkNote"></p><div class="cvlinks" id="cvWorkLinks"></div><button class="btn cvwb" id="cvWorkBtn" type="button"></button>
+      </section>
+      <aside class="cvside">
+        <h3 id="cvSkillsH"></h3><div class="chips"><span class="chip">TouchDesigner</span><span class="chip">Blender</span><span class="chip">Unity</span><span class="chip">Python</span><span class="chip">Adobe Photoshop</span><span class="chip">Adobe Illustrator</span><span class="chip">Adobe After Effects</span><span class="chip">Adobe Premiere Pro</span><span class="chip">Motion Design</span><span class="chip">Projection Mapping</span><span class="chip">MediaPipe</span><span class="chip">Sound</span></div>
+        <h3 id="cvServicesH"></h3><ul class="svc" id="cvServices"></ul>
+      </aside>
+    </div>
+    <footer class="cvfoot">
+      <p class="keys" id="cvKeys"></p>
+      <button class="go" id="go" type="button"></button>
+    </footer>
+  </article>
 </div>
 
 <div class="veil" id="veil" hidden>
@@ -153,7 +241,12 @@ button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
   </div>
 </div>
 
-<div class="loading" id="loading">LOADING ▢▢▢</div>
+<div class="loading" id="loading">
+  <div class="ldgrid" id="ldgrid"></div>
+  <div class="ldtxt"><span id="ldlabel">LOADING</span><span id="ldpct">0%</span></div>
+  <div class="ldbar"><i id="ldfill"></i></div>
+</div>
+<div class="toast" id="toast" hidden><b id="toastH"></b><span id="toastP"></span><button class="btn" id="rebuild" type="button"></button></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -166,58 +259,84 @@ const LINKS = {
   youtube: "https://www.youtube.com/@mahsheedkhalaj", youtubeLabel: "@mahsheedkhalaj",
   error403: "https://error-403-platform.github.io", error403Label: "error-403-platform.github.io",
   github: "https://github.com/error-403-platform/error-403-platform.github.io", githubLabel: "github.com/error-403-platform",
+  ad: "https://drive.google.com/file/d/1cIZTpKAbqTKYLzJ7UqQUL9_8t8WzdQJY/view?usp=sharing",
+  atoz: "https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDk2NjM3ODMxMjE3MTM3?story_media_id=2632753943900743549_29891053621",
   farzin: "https://drive.google.com/file/d/1T8YLfjuQrg4_df43LY8ti96NX7tBaZx8/view?usp=sharing"
 };
 const T = {
   fa:{
-    name:"مهشید خلج",
-    hint:"با کیبورد یا کلیک راه برو. اشیای سه‌بعدی رو با کشیدن موس بچرخون و مربع‌های نورانی رو جمع کن.",
-    introH:'دنیای <em>کلاژی</em> مهشید',
-    introP:"این دنیا از تکه‌های کارهای خودم و وسایل میز کارم ساخته شده: پوینت‌کلاد، گلیچ، چشم‌ها، بدن‌ها، پیکسل‌ها، آردوینو، دوربین و کیبورد. من توش می‌چرخم و همه‌چیز به من واکنش نشون می‌ده. چهار جزیره رو پیدا کن تا من و کارهام رو بشناسی.",
-    keys:"کامپیوتر: کلیدهای جهت یا WASD برای راه رفتن · E برای ورود · کشیدن اشیا برای چرخوندن\nموبایل: هرجا رو لمس کنی، همون‌جا می‌رم",
-    start:"ورود به دنیا",
+    name:"مهشید خلج", role:"هنرمند چندرسانه‌ای · طراح تعاملی",
+    hint:"برای حرکت از کلیدهای جهت‌نما یا کلیک استفاده کنید. اشیای سه‌بعدی را با کشیدن نشانگر بچرخانید و مربع‌های نورانی را بیابید.",
     l_about:"درباره من", l_projects:"پروژه‌ها", l_work:"همکاری", l_contact:"تماس",
-    enter:r=>`ورود به ${T.fa["l_"+r]} ←`,
-    count:(n,t)=>`▢ ${n}/${t}`,
+    enter:r=>`ورود به بخش ${T.fa["l_"+r]} ←`,
+    count:(n,t)=>`▢ ${n.toLocaleString("fa")}/${t.toLocaleString("fa")}`,
+    load:"در حال بارگذاری",
     about:{h:"درباره من", k:"ABOUT",
-      body:`<p>من مهشید خلج هستم؛ ویژوال آرتیست، طراح تعاملی و گیم‌دیزاینر. با TouchDesigner، بلندر، یونیتی و موشن دیزاین کار می‌کنم و از کلاژ، صدا و تعامل زنده برای ساختن تجربه استفاده می‌کنم.</p>
-      <p>چهار ساله که در ایران کار می‌کنم و اجرا دارم. هم‌بنیان‌گذار پلتفرم صوتی‌تصویری <a class="inl" href="${LINKS.error403}" target="_blank" rel="noopener">ERROR-403</a> هستم که از ۱۴۰۳ شروع شد و در شرایط سخت به کارش ادامه می‌ده.</p>
-      <div class="chips"><span class="chip">TouchDesigner</span><span class="chip">Blender</span><span class="chip">Unity</span><span class="chip">Motion Design</span><span class="chip">Projection Mapping</span><span class="chip">Music</span></div>`},
+      body:`<p>مهشید خلج هستم؛ هنرمند چندرسانه‌ای، طراح تعاملی، طراح هویت بصری و طراح بازی. در آثارم از TouchDesigner، Blender، Unity، مجموعه‌ی نرم‌افزارهای Adobe و موشن‌دیزاین بهره می‌گیرم و با تلفیق کلاژ، صدا و تعامل زنده، تجربه‌هایی چندحسی خلق می‌کنم.</p>
+      <p>پیش از ورود به حوزه‌ی نیومدیا، ده سال در زمینه‌ی طراحی گرافیک و انیمیشن فعالیت داشته‌ام و بیش از چهار سال است که در ایران به تولید آثار نیومدیا و اجرای زنده مشغولم. هم‌بنیان‌گذار پلتفرم اجرای صوتی‌تصویری <a class="inl" href="${LINKS.error403}" target="_blank" rel="noopener">ERROR-403</a> هستم؛ مجموعه‌ای که از سال ۱۴۰۳ فعالیت خود را آغاز کرده و با وجود شرایط دشوار، همچنان به تولید اثر ادامه می‌دهد.</p>
+      <div class="chips"><span class="chip">TouchDesigner</span><span class="chip">Blender</span><span class="chip">Unity</span><span class="chip">Motion Design</span><span class="chip">Projection Mapping</span><span class="chip">Adobe Creative Suite</span><span class="chip">Sound</span></div>`},
     projects:{h:"پروژه‌ها", k:"PROJECTS · COLLABORATIONS"},
-    work:{h:"همکاری با من", k:"OPEN FOR WORK", intro:"برای پروژه‌های فریلنس آماده‌ام. این کارها رو انجام می‌دم:",
-      items:[["ویژوال تعاملی","تاچ‌دیزاینر برای نمایشگاه، اجرا و فضاهای تعاملی"],["پروجکشن مپینگ","مپینگ روی اشیا، مبلمان و فضا"],["ویژوال زنده برای موسیقی","ویژوال‌های صدامحور برای کنسرت و اجرا"],["موشن دیزاین و انیمیشن","انیمیشن، لوپ و ویدیو برای شبکه‌های اجتماعی"],["بازی و تجربه تعاملی","بازی‌های کوچک، کنترل با دست و دوربین"]],
-      cta:"برای شروع، از بخش تماس بهم پیام بده."},
+    work:{h:"همکاری", k:"OPEN FOR WORK", intro:"آماده‌ی همکاری در پروژه‌های آزاد (فریلنس) در زمینه‌های زیر هستم:",
+      items:[["طراحی هویت بصری","طراحی لوگو، تایپوگرافی و هویت بصری برای برندها، گروه‌های هنری و رویدادها"],["ویژوال تعاملی","طراحی و اجرای سیستم‌های تعاملی با TouchDesigner برای نمایشگاه، اجرا و فضاهای تجربی"],["پروجکشن مپینگ","طراحی و اجرای مپینگ بر روی اشیا، مبلمان و فضاهای معماری"],["ویژوال زنده برای موسیقی","طراحی ویژوال‌های واکنش‌گرا به صدا برای کنسرت و اجرای زنده"],["موشن‌دیزاین و انیمیشن","تولید انیمیشن، لوپ و ویدیو برای رسانه‌های دیجیتال"],["بازی و تجربه‌ی تعاملی","طراحی بازی‌های کوتاه و تجربه‌های مبتنی بر ردیابی دست و دوربین"]],
+      cta:"برای آغاز همکاری، از طریق بخش تماس با من در ارتباط باشید."},
     contact:{h:"تماس", k:"CONTACT"},
     copy:"کپی", copied:"کپی شد",
-    lbl:{email:"ایمیل",instagram:"اینستاگرام",youtube:"یوتیوب",error403:"سایت ERROR-403",github:"گیت‌هاب ERROR-403"},collabH:"همکاری‌ها",collabSub:"ویدیوهایی که برای هنرمندهای مختلف ساختم. روی هر کدوم بزنی، توی یوتیوب باز می‌شه.",collab:"همکاری",watch:"تماشا در یوتیوب",mineH:"پروژه‌های من"
+    lbl:{email:"ایمیل",instagram:"اینستاگرام",youtube:"یوتیوب",error403:"وب‌سایت ERROR-403"},
+    collabH:"همکاری‌ها", collabSub:"چند نمونه از ویدیوهایی که برای هنرمندان مختلف طراحی و تولید کرده‌ام؛ همکاری‌هایم به این موارد محدود نمی‌شود. با انتخاب هر مورد، ویدیو در یوتیوب باز می‌شود.", collab:"همکاری", watch:"مشاهده در یوتیوب", mineH:"پروژه‌های شخصی", soon:"به‌زودی",
+    clearH:"همه‌ی مربع‌ها پیدا شد", clearP:"جهان کلاژ از تکه‌ها خالی شد و تنها نور باقی ماند.", rebuild:"بازسازی جهان",
+    cv:{
+      enter:"ورود به جهان کلاژ", close:"بستن و ورود به بازی",
+      profileH:"معرفی", profile:"هنرمند چندرسانه‌ای، طراح تعاملی، طراح هویت بصری و طراح بازی با ده سال سابقه در طراحی گرافیک و انیمیشن و بیش از چهار سال فعالیت حرفه‌ای در حوزه‌ی نیومدیا، آثار تعاملی و اجرای زنده. تمرکز کارم بر تلفیق کلاژ، تصویر دیجیتال، صدا و تعامل بلادرنگ است.",
+      expH:"سوابق",
+      exp:[["هم‌بنیان‌گذار · ERROR-403","پلتفرم اجرای صوتی‌تصویری","۱۴۰۳ تاکنون"],["هنرمند نیومدیا و طراح تعاملی","پروژه‌های آزاد، اجرای زنده و چیدمان تعاملی","بیش از ۴ سال"],["طراح گرافیک و انیماتور","طراحی گرافیک، موشن‌گرافیک و انیمیشن","۱۰ سال"],["طراح هویت بصری","طراحی لوگو و هویت بصری، از جمله هویت بصری ERROR-403","—"],["اجرای زنده و رویدادها","رشت، شیراز و شهرهای دیگر","—"]],
+      workH:"نمونه‌کارها",
+      workNote:"تنها چند نمونه از کارهایم در بخش پروژه‌ها آمده است؛ در طول این سال‌ها با هنرمندان بسیار بیشتری همکاری داشته‌ام.",workBtn:"مشاهده‌ی نمونه‌کارها",
+      skillsH:"مهارت‌ها و ابزارها", servicesH:"خدمات",
+      services:["طراحی هویت بصری","ویژوال تعاملی","پروجکشن مپینگ","ویژوال زنده برای موسیقی","موشن‌دیزاین و انیمیشن","بازی و تجربه‌ی تعاملی"],
+      contactH:"ارتباط", keys:"رایانه: کلیدهای جهت‌نما یا WASD برای حرکت، کلید E برای ورود، کشیدن نشانگر برای چرخاندن اشیا. تلفن همراه: با لمس هر نقطه، شخصیت به آن سمت حرکت می‌کند."
+    }
   },
   en:{
-    name:"MAHSHID KHALAJ",
-    hint:"Walk with the keyboard or by clicking. Drag the 3D objects to spin them and collect the glowing squares.",
-    introH:"Mahshid's <em>Collage</em> World",
-    introP:"This world is made from scraps of my own work and the things on my desk: point clouds, glitches, eyes, bodies, pixels, an Arduino, a camera, a keyboard. I walk around in it and everything reacts to me. Find the four islands to meet me and my work.",
-    keys:"Desktop: arrow keys or WASD to walk · E to enter · drag objects to spin them\nPhone: tap anywhere and I'll walk there",
-    start:"Enter the world",
+    name:"MAHSHID KHALAJ", role:"Multimedia Artist · Interactive Designer",
+    hint:"Walk with the arrow keys or by clicking. Drag the 3D objects to spin them and find the glowing squares.",
     l_about:"ABOUT", l_projects:"WORK", l_work:"HIRE ME", l_contact:"CONTACT",
     enter:r=>`Enter ${T.en["l_"+r]} →`,
     count:(n,t)=>`▢ ${n}/${t}`,
+    load:"LOADING",
     about:{h:"About me", k:"ABOUT",
-      body:`<p>I'm Mahshid Khalaj, a visual artist, interactive designer and game designer. I work with TouchDesigner, Blender, Unity and motion design, and I build experiences from collage, sound and live interaction.</p>
-      <p>I've been making work and performing in Iran for four years. I co-founded the audiovisual platform <a class="inl" href="${LINKS.error403}" target="_blank" rel="noopener">ERROR-403</a>, started in 2024, which keeps making work under hard conditions.</p>
-      <div class="chips"><span class="chip">TouchDesigner</span><span class="chip">Blender</span><span class="chip">Unity</span><span class="chip">Motion Design</span><span class="chip">Projection Mapping</span><span class="chip">Music</span></div>`},
+      body:`<p>I'm Mahshid Khalaj, a multimedia artist, interactive designer, visual identity designer and game designer. I work with TouchDesigner, Blender, Unity, the Adobe suite and motion design, and I build multi-sensory experiences from collage, sound and live interaction.</p>
+      <p>Before moving into new media I spent ten years working in graphic design and animation, and for over four years I've been making new media work and performing live in Iran. I co-founded the audiovisual performance platform <a class="inl" href="${LINKS.error403}" target="_blank" rel="noopener">ERROR-403</a>, active since 2024, which keeps producing work under hard conditions.</p>
+      <div class="chips"><span class="chip">TouchDesigner</span><span class="chip">Blender</span><span class="chip">Unity</span><span class="chip">Motion Design</span><span class="chip">Projection Mapping</span><span class="chip">Adobe Creative Suite</span><span class="chip">Sound</span></div>`},
     projects:{h:"Projects", k:"PROJECTS · COLLABORATIONS"},
-    work:{h:"Work with me", k:"OPEN FOR WORK", intro:"I'm available for freelance projects:",
-      items:[["Interactive visuals","TouchDesigner for exhibitions, shows and interactive spaces"],["Projection mapping","Mapping onto objects, furniture and spaces"],["Live visuals for music","Audio-reactive visuals for concerts and performances"],["Motion design & animation","Loops, animation and video for social media"],["Games & interactive pieces","Small games, hand- and camera-controlled play"]],
-      cta:"To start, send me a message from the contact island."},
+    work:{h:"Work with me", k:"OPEN FOR WORK", intro:"I'm available for freelance projects in these areas:",
+      items:[["Visual identity design","Logo, typography and visual identity for brands, art collectives and events"],["Interactive visuals","Interactive systems in TouchDesigner for exhibitions, performances and experimental spaces"],["Projection mapping","Mapping onto objects, furniture and architecture"],["Live visuals for music","Audio-reactive visuals for concerts and live shows"],["Motion design & animation","Animation, loops and video for digital media"],["Games & interactive pieces","Short games and hand- or camera-tracked experiences"]],
+      cta:"To start a project, get in touch through the contact section."},
     contact:{h:"Contact", k:"CONTACT"},
     copy:"Copy", copied:"Copied",
-    lbl:{email:"Email",instagram:"Instagram",youtube:"YouTube",error403:"ERROR-403 site",github:"ERROR-403 GitHub"},collabH:"Collaborations",collabSub:"Videos I made for other artists. Tap one to open it on YouTube.",collab:"Collab",watch:"Watch on YouTube",mineH:"My projects"
+    lbl:{email:"Email",instagram:"Instagram",youtube:"YouTube",error403:"ERROR-403 website"},
+    collabH:"Collaborations", collabSub:"A few samples of videos I designed and produced for other artists; I have worked with many more. Select one to open it on YouTube.", collab:"Collab", watch:"Watch on YouTube", mineH:"Personal projects", soon:"SOON",
+    clearH:"All squares found", clearP:"The collage world has emptied out. Only the light is left.", rebuild:"Rebuild the world",
+    cv:{
+      enter:"Enter the collage world", close:"Close and enter the game",
+      profileH:"Profile", profile:"Multimedia artist, interactive designer, visual identity designer and game designer with ten years of experience in graphic design and animation, followed by over four years in new media, interactive work and live performance. My practice combines collage, digital image, sound and real-time interaction.",
+      expH:"Experience",
+      exp:[["Co-founder · ERROR-403","Audiovisual performance platform","2024 – now"],["New media artist & interactive designer","Freelance projects, live shows and installations","4+ years"],["Graphic designer & animator","Graphic design, motion graphics and animation","10 years"],["Visual identity designer","Logo and visual identity design, including the ERROR-403 identity","—"],["Live performances & events","Rasht, Shiraz and other cities","—"]],
+      workH:"Work samples",
+      workNote:"The projects section shows only a few samples. Over the years I have collaborated with many more artists.",workBtn:"View work samples",
+      skillsH:"Skills & tools", servicesH:"Services",
+      services:["Visual identity design","Interactive visuals","Projection mapping","Live visuals for music","Motion design & animation","Games & interactive pieces"],
+      contactH:"Contact", keys:"Desktop: arrow keys or WASD to walk, E to enter, drag to spin objects. Phone: tap anywhere and the character walks there."
+    }
   }
 };
 /* Collaborations — music videos on other artists' channels. Add title / artist names here */
 /* Own projects shown first in the projects panel */
 const MYWORK = [
-  {url:LINKS.farzin, fa:["مینی گیم","بازی‌ای که به‌عنوان هدیه‌ی تولد برای یه دوست ساختم؛ همراه با همه‌ی کدهاش"], en:["Mini Game","A game I made as a birthday gift for a friend, with all its code"], tag:"DOWNLOAD",
+  {url:LINKS.ad, fa:["نمونه‌کار تبلیغاتی","نمونه‌ای از طراحی و تولید تبلیغاتی"], en:["Advertising sample","A sample of advertising design and production"], tag:"VIDEO",
+   icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 16 h6 l14 -8 v24 l-14 -8 h-6 z"/><path d="M10 24 l2 8 h4 l-2 -8"/><path d="M30 14 q4 6 0 12 M33 10 q7 10 0 20" opacity=".7"/></g>'},
+  {url:LINKS.atoz, fa:["AtoZ Design","هایلایت نمونه‌کارهای طراحی در اینستاگرام"], en:["AtoZ Design","Design portfolio highlight on Instagram"], tag:"INSTAGRAM",
+   icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="32" height="32" rx="9"/><circle cx="20" cy="20" r="7"/></g><circle cx="29" cy="11" r="1.6" fill="currentColor"/><path d="M14 31 h12" stroke="currentColor" stroke-width="1" opacity=".5"/>'},
+  {url:LINKS.farzin, fa:["مینی‌گیم","بازی‌ای که به‌عنوان هدیه‌ی تولد برای یک دوست طراحی کرده‌ام؛ به همراه سورس‌کد کامل"], en:["Mini Game","A game I designed as a birthday gift for a friend, with full source code"], tag:"DOWNLOAD",
    icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 18 h28 v14 h-28 z"/><path d="M6 18 l5-5 h28 l-5 5 M34 32 l5-5 v-14"/><ellipse cx="12" cy="13.5" rx="3" ry="1.3"/><ellipse cx="20" cy="13.5" rx="3" ry="1.3"/><ellipse cx="28" cy="13.5" rx="3" ry="1.3"/><path d="M9 13.5 v-2.5 M15 13.5 v-2.5 M17 13.5 v-2.5 M23 13.5 v-2.5 M25 13.5 v-2.5 M31 13.5 v-2.5"/><ellipse cx="12" cy="11" rx="3" ry="1.3"/><ellipse cx="20" cy="11" rx="3" ry="1.3"/><ellipse cx="28" cy="11" rx="3" ry="1.3"/></g>'},
   {url:LINKS.error403, fa:["ERROR-403","پلتفرم اجرای صوتی‌تصویری"], en:["ERROR-403","Audiovisual performance platform"], tag:"WEBSITE",
    icon:'<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M5 12 v6 h6 M11 12 v14"/><path d="M15 12 h6 v14 h-6 z"/><path d="M25 12 h6 v7 h-5 M31 19 v7 h-6"/></g><path d="M3 21 h12" stroke="currentColor" stroke-width="1" opacity=".6"/><rect x="27" y="29" width="8" height="2" fill="currentColor" opacity=".7"/>'}
@@ -252,8 +371,8 @@ const OBJECT_TYPES = ["cube","plant","mouse","scissors","tape","keyboard","camer
 
 const $=s=>document.querySelector(s);
 let lang="fa",got=new Set(),seen=new Set();
-lang="en";try{got=new Set(JSON.parse(localStorage.getItem("mk-sq")||"[]"));seen=new Set(JSON.parse(localStorage.getItem("mk-seen")||"[]"))}catch(e){}
-function save(){try{localStorage.setItem("mk-lang",lang);localStorage.setItem("mk-sq",JSON.stringify([...got]));localStorage.setItem("mk-seen",JSON.stringify([...seen]))}catch(e){}}
+lang="en";try{lang=localStorage.getItem("mk-lang2")||"en";got=new Set(JSON.parse(localStorage.getItem("mk-sq")||"[]"));seen=new Set(JSON.parse(localStorage.getItem("mk-seen")||"[]"))}catch(e){}
+function save(){try{localStorage.setItem("mk-lang2",lang);localStorage.setItem("mk-sq",JSON.stringify([...got]));localStorage.setItem("mk-seen",JSON.stringify([...seen]))}catch(e){}}
 
 let seed=403;
 function rand(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}
@@ -262,7 +381,10 @@ const GLOW=["#35e0d0","#ff4b1f","#f2ebe0","#d9a531"];
 
 /* ---------- images ---------- */
 const IMG={};
-function loadImages(){return Promise.all(Object.keys(IMG_DATA).map(k=>new Promise(res=>{const im=new Image();im.onload=()=>{IMG[k]=im;res()};im.onerror=res;im.src="data:image/webp;base64,"+IMG_DATA[k]})))}
+let ldDone=0;const ldTot=Object.keys(IMG_DATA).length;
+function ldSet(p){p=Math.max(0,Math.min(1,p));const cells=document.querySelectorAll("#ldgrid i"),n=Math.round(p*cells.length);cells.forEach((c,i)=>c.classList.toggle("on",i<n));$("#ldpct").textContent=Math.round(p*100)+"%";$("#ldfill").style.width=(p*100)+"%"}
+{const g=$("#ldgrid");const order=[...Array(81).keys()].sort(()=>Math.random()-.5);const cells=[];for(let i=0;i<81;i++){const c=document.createElement("i");c.style.animationDelay=(i%9*.08+Math.floor(i/9)*.05)+"s";const r=Math.random();if(r<.15)c.className="o";else if(r<.27)c.className="g";cells.push(c)}order.forEach(i=>g.appendChild(cells[i]))}
+function loadImages(){return Promise.all(Object.keys(IMG_DATA).map(k=>new Promise(res=>{const im=new Image();const fin=()=>{ldDone++;ldSet(ldDone/ldTot*.8);res()};im.onload=()=>{IMG[k]=im;fin()};im.onerror=fin;im.src="data:image/webp;base64,"+IMG_DATA[k]})))}
 
 /* ---------- collage pieces cut from the works ---------- */
 const TR=2.5;
@@ -461,7 +583,7 @@ function goTo(room){const s=STATIONS.find(s=>s.room===room);target={x:s.x,y:s.y+
 function burst(x,y,n){for(let i=0;i<n;i++)bits.push({x,y,vx:(Math.random()-.5)*10,vy:-Math.random()*8-1,c:GLOW[(Math.random()*GLOW.length)|0],s:2+Math.random()*5,hollow:Math.random()<.4,life:1})}
 
 /* ---------- update ---------- */
-let last=performance.now(),trailT=0;
+let last=performance.now(),trailT=0,cleared=false,clearK=0;
 function update(dt){
   let ax=0,ay=0;
   if(keys.arrowleft||keys.a)ax-=1;if(keys.arrowright||keys.d)ax+=1;if(keys.arrowup||keys.w)ay-=1;if(keys.arrowdown||keys.s)ay+=1;
@@ -485,7 +607,8 @@ function update(dt){
     o.pvx+=-o.ox*.02;o.pvy+=-o.oy*.02;o.pvx*=.88;o.pvy*=.88;o.ox+=o.pvx;o.oy+=o.pvy;
     if(o!==dragObj){o.ry+=(o.spin+o.vy)*dt;o.rx+=o.vx*dt;o.vx*=Math.pow(.25,dt);o.vy*=Math.pow(.25,dt);o.rx+=(-.25-o.rx)*dt*.4}
   }
-  for(const s of squares){if(!s.gone&&Math.hypot(s.x-player.x,s.y-(player.y-FH*.45))<95){s.gone=.001;got.add(s.id);save();burst(s.x,s.y,30);hud()}if(s.gone&&s.gone<1)s.gone=Math.min(1,s.gone+dt*2)}
+  if(cleared&&clearK<1)clearK=Math.min(1,clearK+dt/2.6);
+  for(const s of squares){if(!s.gone&&Math.hypot(s.x-player.x,s.y-(player.y-FH*.45))<95){s.gone=.001;got.add(s.id);save();burst(s.x,s.y,30);hud();if(got.size>=14&&!cleared)clearWorld()}if(s.gone&&s.gone<1)s.gone=Math.min(1,s.gone+dt*2)}
   {const P=GP,RR=180;for(let i=0;i<P.n;i++){const dx=P.x[i]+P.ox[i]-cx,dy=P.y[i]+P.oy[i]-cy;
     if(dx>-RR&&dx<RR&&dy>-RR*1.3&&dy<RR*1.3){const d=Math.hypot(dx,dy*.8)||1;if(d<RR){const k=(1-d/RR)*1.6;P.vx[i]+=dx/d*k;P.vy[i]+=dy/d*k}}
     if(P.ox[i]!==0||P.vx[i]!==0){P.vx[i]+=-P.ox[i]*.015;P.vy[i]+=-P.oy[i]*.015;P.vx[i]*=.92;P.vy[i]*=.92;P.ox[i]+=P.vx[i];P.oy[i]+=P.vy[i];if(Math.abs(P.ox[i])+Math.abs(P.vx[i])<.03){P.ox[i]=P.vx[i]=P.oy[i]=P.vy[i]=0}}}}
@@ -498,25 +621,26 @@ function update(dt){
 
 /* ---------- draw ---------- */
 function drawFrag(f,t){
-  const x=f.hx+f.ox,y=f.hy+f.oy+Math.sin(t*1.1+f.ph)*4;
-  ctx.save();ctx.translate(x,y);ctx.rotate(f.a+f.da+Math.sin(t*.6+f.ph)*.015);const s=1+f.awake*.08;ctx.scale(s,s);const w=f.w,h=f.h;
+  const ek=clearK*clearK,x=f.hx+f.ox+(f.hx-player.x)*ek*1.4,y=f.hy+f.oy+Math.sin(t*1.1+f.ph)*4+(f.hy-player.y)*ek*1.4,fa=1-clearK;
+  ctx.save();ctx.globalAlpha=fa;ctx.translate(x,y);ctx.rotate(f.a+f.da+Math.sin(t*.6+f.ph)*.015);const s=1+f.awake*.08;ctx.scale(s,s);const w=f.w,h=f.h;
   if(f.anim==="flicker"&&Math.random()<.03+f.awake*.4){const step=Math.max(4,h/8);for(let y0=0;y0<h;y0+=step){const hh=Math.min(step,h-y0),off=(Math.random()-.5)*14*(1+f.awake*1.5);ctx.drawImage(f.tex,0,y0*TR,w*TR,hh*TR,-w/2+off,-h/2+y0,w,hh)}}
-  else if(f.anim==="rgb"&&f.awake>.2){ctx.globalCompositeOperation="lighter";ctx.globalAlpha=.45;const o=3+f.awake*6;ctx.drawImage(f.tex,-w/2-o,-h/2,w,h);ctx.drawImage(f.tex,-w/2+o,-h/2,w,h);ctx.globalAlpha=1;ctx.globalCompositeOperation="source-over";ctx.drawImage(f.tex,-w/2,-h/2,w,h)}
+  else if(f.anim==="rgb"&&f.awake>.2){ctx.globalCompositeOperation="lighter";ctx.globalAlpha=.45*fa;const o=3+f.awake*6;ctx.drawImage(f.tex,-w/2-o,-h/2,w,h);ctx.drawImage(f.tex,-w/2+o,-h/2,w,h);ctx.globalAlpha=fa;ctx.globalCompositeOperation="source-over";ctx.drawImage(f.tex,-w/2,-h/2,w,h)}
   else ctx.drawImage(f.tex,-w/2,-h/2,w,h);
-  if(f.awake>.05){ctx.globalAlpha=f.awake;ctx.strokeStyle="#35e0d0";ctx.lineWidth=1.5;ctx.strokeRect(-w/2-5,-h/2-5,w+10,h+10)}
+  if(f.awake>.05){ctx.globalAlpha=f.awake*fa;ctx.strokeStyle="#35e0d0";ctx.lineWidth=1.5;ctx.strokeRect(-w/2-5,-h/2-5,w+10,h+10)}
   ctx.restore();
 }
 function drawObj(o,t){
-  const x=o.x+o.ox,y=o.y+o.oy+Math.sin(t*.9+o.ph)*8,s=o.size*(1+o.awake*.06);
+  const ek=clearK*clearK,x=o.x+o.ox+(o.x-player.x)*ek*1.4,y=o.y+o.oy+Math.sin(t*.9+o.ph)*8+(o.y-player.y)*ek*1.4,s=o.size*(1+o.awake*.06+clearK*.6);
+  if(clearK>0)o.mat.uniforms&&(o.mat.uniforms.uScatter.value=0);
   ctx.save();ctx.strokeStyle=`rgba(242,235,224,${.12+o.awake*.3})`;ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(o.x+o.ox,o.y+o.size*.42,o.size*.32,o.size*.07,0,0,7);ctx.stroke();
   if(o.awake>.05){ctx.strokeStyle=`rgba(53,224,208,${o.awake*.8})`;ctx.setLineDash([5,7]);ctx.lineDashOffset=-t*20;ctx.beginPath();ctx.ellipse(o.x+o.ox,o.y+o.size*.42,o.size*.4,o.size*.09,0,0,7);ctx.stroke();ctx.setLineDash([])}
   ctx.restore();
   o.mat.uniforms.uTime.value=t+o.ph*10;o.mat.uniforms.uScatter.value=o.awake*.32+(o===dragObj?.12:0);o.mat.uniforms.uSize.value=3.2*Math.min(1.6,Math.max(.8,s*SC*DPR/RS*1.25));
   o.group.visible=true;o.group.rotation.set(o.rx,o.ry,0);G3.r.render(G3.scene,G3.cam);o.group.visible=false;
-  ctx.globalCompositeOperation="lighter";ctx.drawImage(G3.r.domElement,x-s/2,y-s/2,s,s);ctx.globalCompositeOperation="source-over";
+  if(clearK>0)o.mat.uniforms.uScatter.value=clearK*2.2;ctx.globalCompositeOperation="lighter";ctx.globalAlpha=1-clearK;ctx.drawImage(G3.r.domElement,x-s/2,y-s/2,s,s);ctx.globalAlpha=1;ctx.globalCompositeOperation="source-over";
 }
 function label(text,x,y,isSeen){
-  const en=lang==="en";ctx.save();ctx.font=en?'24px "Rubik Mono One",sans-serif':'38px "Lalezar","Vazirmatn",sans-serif';
+  const en=lang==="en";ctx.save();ctx.font=en?'24px "Rubik Mono One",sans-serif':'300 34px "Vazirmatn",sans-serif';
   const w=ctx.measureText(text).width+40;ctx.fillStyle="rgba(2,2,3,.9)";ctx.fillRect(x-w/2,y-27,w,54);
   ctx.strokeStyle="#f2ebe0";ctx.lineWidth=1.4;ctx.strokeRect(x-w/2,y-27,w,54);
   ctx.fillStyle=isSeen?"#ff4b1f":"#35e0d0";ctx.fillRect(x+w/2-6,y-33,12,12);
@@ -531,7 +655,7 @@ function drawStation(s,t){
       for(let i=0;i<5;i++){const a=t*.5+i*1.26,r=250;ctx.strokeStyle=i%2?"#35e0d0":"#ff4b1f";ctx.lineWidth=2;const x=Math.cos(a)*r,y=-h/2+50+Math.sin(a)*r*.45;ctx.strokeRect(x-10,y-10,20,20)}}}
   else if(s.room==="work"){const im=IMG.mosaic;ctx.save();ctx.beginPath();ctx.rect(-200,-230,400,220);ctx.clip();if(im)ctx.drawImage(im,(t*8)%200-300,-230,560,350);ctx.fillStyle="rgba(2,2,3,.55)";ctx.fillRect(-200,-230,400,220);ctx.restore();
       ctx.strokeStyle="#f2ebe0";ctx.lineWidth=1.4;ctx.strokeRect(-200,-230,400,220);
-      const on=Math.sin(t*3)>-.75||isNear;ctx.textAlign="center";ctx.textBaseline="middle";ctx.font=lang==="en"?'30px "Rubik Mono One",sans-serif':'54px "Lalezar",sans-serif';
+      const on=Math.sin(t*3)>-.75||isNear;ctx.textAlign="center";ctx.textBaseline="middle";ctx.font=lang==="en"?'30px "Rubik Mono One",sans-serif':'300 50px "Vazirmatn",sans-serif';
       ctx.shadowBlur=on?24:0;ctx.shadowColor="#35e0d0";ctx.fillStyle=on?"#8ffff3":"#1d4d49";ctx.fillText(lang==="en"?"OPEN FOR":"آماده‌ی",0,-160);
       ctx.shadowColor="#ff4b1f";ctx.fillStyle=on?"#ffb199":"#5a2316";ctx.fillText(lang==="en"?"WORK":"همکاری",0,-90);ctx.shadowBlur=0}
   else{const im=IMG.eye;if(im){const ang=Math.atan2(cy-(s.y-110),cx-s.x);ctx.translate(0,-110);ctx.rotate(ang-Math.PI*.15);ctx.globalCompositeOperation="screen";const sz=isNear?330:290;ctx.drawImage(im,-sz/2,-sz/2,sz,sz);ctx.globalCompositeOperation="source-over";ctx.rotate(-(ang-Math.PI*.15));
@@ -556,14 +680,14 @@ function draw(){
   ctx.globalAlpha=1;
   ctx.save();ctx.scale(SC,SC);ctx.translate(-camX,-camY);
   const x0=camX-380,y0=camY-380,x1=camX+VW/SC+380,y1=camY+VH/SC+460,list=[];
-  for(const f of frags){const x=f.hx+f.ox,y=f.hy+f.oy;if(x>x0&&x<x1&&y>y0&&y<y1)list.push({y:y+f.h*.3,d:()=>drawFrag(f,t)})}
-  if(G3)for(const o of objs){if(o.x>x0&&o.x<x1&&o.y>y0&&o.y<y1)list.push({y:o.y+o.size*.4,d:()=>drawObj(o,t)})}
+  if(clearK<1)for(const f of frags){const x=f.hx+f.ox,y=f.hy+f.oy;if(x>x0&&x<x1&&y>y0&&y<y1)list.push({y:y+f.h*.3,d:()=>drawFrag(f,t)})}
+  if(G3&&clearK<1)for(const o of objs){if(o.x>x0&&o.x<x1&&o.y>y0&&o.y<y1)list.push({y:o.y+o.size*.4,d:()=>drawObj(o,t)})}
   for(const s of STATIONS)if(s.x>x0-250&&s.x<x1+250&&s.y>y0&&s.y<y1+320)list.push({y:s.y+100,d:()=>drawStation(s,t)});
   for(const q of squares){if(q.gone>=1)continue;list.push({y:q.y+30,d:()=>{const sc=1+(q.gone||0)*2;ctx.save();ctx.globalAlpha=1-(q.gone||0);ctx.translate(q.x,q.y+Math.sin(t*2+q.ph)*10);ctx.rotate(t*.6+q.ph);ctx.scale(sc,sc);ctx.shadowColor=q.col;ctx.shadowBlur=16;ctx.strokeStyle=q.col;ctx.lineWidth=3;ctx.strokeRect(-18,-18,36,36);ctx.fillStyle=q.col;ctx.fillRect(-4,-4,8,8);ctx.restore()}})}
   list.push({y:player.y,d:()=>drawPlayer(t)});
   list.sort((a,b)=>a.y-b.y);for(const it of list)it.d();
   {const P=GP;ctx.globalCompositeOperation="lighter";for(let i=0;i<P.n;i++){const x=P.x[i]+P.ox[i]+Math.sin(t*.35*P.sp[i]+P.ph[i])*14,y=P.y[i]+P.oy[i]+Math.cos(t*.3*P.sp[i]+P.ph[i])*14;if(x<x0||x>x1||y<y0||y>y1)continue;
-    const mv=Math.abs(P.vx[i])+Math.abs(P.vy[i]),r=P.r[i]*(1+Math.min(1,mv*.15));ctx.globalAlpha=Math.min(1,(.28+.22*Math.sin(t*1.6*P.sp[i]+P.ph[i]))*(P.r[i]>7?.55:1)+mv*.08);ctx.drawImage(SPR[P.c[i]],x-r*2,y-r*2,r*4,r*4)}
+    const mv=Math.abs(P.vx[i])+Math.abs(P.vy[i]),r=P.r[i]*(1+Math.min(1,mv*.15));const gk=1+clearK*1.3,rr=r*(1+clearK*.35);ctx.globalAlpha=Math.min(1,((.28+.22*Math.sin(t*1.6*P.sp[i]+P.ph[i]))*(P.r[i]>7?.55:1)+mv*.08)*gk);ctx.drawImage(SPR[P.c[i]],x-rr*2,y-rr*2,rr*4,rr*4)}
     ctx.globalAlpha=1;ctx.globalCompositeOperation="source-over"}
   if(target&&!pendingOpen){ctx.strokeStyle="#ff4b1f";ctx.lineWidth=2;const r=12+Math.sin(t*8)*3;ctx.strokeRect(target.x-r,target.y-r,r*2,r*2)}
   for(const b of bits){ctx.globalAlpha=Math.max(0,b.life);if(b.hollow){ctx.strokeStyle=b.c;ctx.lineWidth=1.5;ctx.strokeRect(b.x-b.s,b.y-b.s,b.s*2,b.s*2)}else{ctx.fillStyle=b.c;ctx.fillRect(b.x-b.s/2,b.y-b.s/2,b.s,b.s)}}ctx.globalAlpha=1;
@@ -599,18 +723,31 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 function hud(){
   const t=T[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==="fa"?"rtl":"ltr";
   document.querySelectorAll("[data-k]").forEach(el=>{const v=t[el.dataset.k];if(typeof v==="string")el.textContent=v});
-  $("#introH").innerHTML=t.introH;
-  $("#count").textContent=t.count(got.size,14);
+  $("#count").textContent=t.count(Math.min(14,got.size),14);
+  if($("#lang"))$("#lang").textContent=lang==="fa"?"EN":"فارسی";$("#cvlang").textContent=lang==="fa"?"EN":"فارسی";
+  $("#ldlabel").textContent=t.load;$("#toastH").textContent=t.clearH;$("#toastP").textContent=t.clearP;$("#rebuild").textContent=t.rebuild;
+  renderCV(t);
   document.querySelectorAll("[data-go]").forEach(b=>{b.textContent=t["l_"+b.dataset.go];b.classList.toggle("seen",seen.has(b.dataset.go))});
 }
+function renderCV(t){
+  const c=t.cv;$("#cvname").textContent=lang==="fa"?t.name:"Mahshid Khalaj";$("#cvrole").textContent=lang==="fa"?"هنرمند چندرسانه‌ای · طراح تعاملی · طراح هویت بصری":"Multimedia Artist · Interactive Designer · Visual Identity Designer";
+  $("#cvlinks").innerHTML=`<span dir="ltr">${esc(LINKS.email)}</span><a dir="ltr" href="${esc(LINKS.instagram)}" target="_blank" rel="noopener">Instagram ${esc(LINKS.instagramLabel)}</a><a dir="ltr" href="${esc(LINKS.youtube)}" target="_blank" rel="noopener">YouTube ${esc(LINKS.youtubeLabel)}</a><a dir="ltr" href="${esc(LINKS.error403)}" target="_blank" rel="noopener">ERROR-403</a>`;
+  $("#cvProfileH").textContent=c.profileH;$("#cvProfile").textContent=c.profile;
+  $("#cvExpH").textContent=c.expH;$("#cvExp").innerHTML=c.exp.map(([a,b,d])=>`<li><b>${esc(a)}</b><em>${esc(d)}</em><span>${esc(b)}</span></li>`).join("");
+  $("#cvWorkH").textContent=c.workH;$("#cvWorkNote").textContent=c.workNote;$("#cvWorkLinks").innerHTML=MYWORK.slice(0,2).map(m=>`<a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m[lang][0])} ↗</a>`).join("");$("#cvWorkBtn").textContent=c.workBtn+(lang==="fa"?" ←":" →");
+  $("#cvSkillsH").textContent=c.skillsH;$("#cvServicesH").textContent=c.servicesH;$("#cvServices").innerHTML=c.services.map(x=>`<li>${esc(x)}</li>`).join("");
+  $("#cvKeys").textContent=c.keys;$("#go").textContent=c.enter+(lang==="fa"?" ←":" →");$("#cvclose").setAttribute("aria-label",c.close);
+}
+function clearWorld(){cleared=true;burst(player.x,player.y-150,80);for(let i=0;i<6;i++)setTimeout(()=>burst(player.x+(Math.random()-.5)*600,player.y-150+(Math.random()-.5)*400,30),i*180);$("#toast").hidden=false;setTimeout(()=>{$("#toast").hidden=true},9000)}
+function rebuildWorld(){got.clear();save();cleared=false;clearK=0;squares.forEach(q=>q.gone=0);$("#toast").hidden=true;hud()}
 function bodyFor(room){
   const t=T[lang];
   if(room==="about")return t.about.body;
-  if(room==="projects"){const cols=[["#35e0d0","rgba(53,224,208,.4)"],["#ff4b1f","rgba(255,75,31,.4)"],["#d9a531","rgba(217,165,49,.4)"],["#f2ebe0","rgba(242,235,224,.3)"]];
+  if(room==="projects"){const cols=[["#f2ebe0","rgba(242,235,224,.28)"]];
     const num=i=>lang==="fa"?String(i+1).padStart(2,"0").replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]):String(i+1).padStart(2,"0");
-    const mine=MYWORK.map((m,i)=>{const [cc,gg]=cols[(i+1)%4],[nm,d]=m[lang],inner=`<svg viewBox="0 0 40 40" aria-hidden="true">${m.icon}</svg><span class="nm">${esc(nm)}</span><span class="ds">${esc(d)}</span>`;
-      return m.url?`<a class="ic" style="--c:${cc};--g:${gg}" href="${esc(m.url)}" target="_blank" rel="noopener" title="${esc(d)}">${inner}<span class="tg">${m.tag} ↗</span></a>`:`<div class="ic" style="--c:${cc};--g:${gg};opacity:.7">${inner}<span class="tg">${lang==="fa"?"به‌زودی":"SOON"}</span></div>`}).join("");
-    return `<div class="sec">${t.mineH}</div><div class="icons ptiles">${mine}</div><div class="sec">${t.collabH}</div><p class="subt">${t.collabSub}</p><div class="icons ptiles">${COLLABS.map((c,i)=>{const [cc,gg]=cols[i%4],nm=c.title||`${t.collab} ${num(i)}`,d=c[lang]||"";
+    const mine=MYWORK.map((m,i)=>{const [cc,gg]=cols[0],[nm,d]=m[lang],inner=`<svg viewBox="0 0 40 40" aria-hidden="true">${m.icon}</svg><span class="nm">${esc(nm)}</span><span class="ds">${esc(d)}</span>`;
+      return m.url?`<a class="ic" style="--c:${cc};--g:${gg}" href="${esc(m.url)}" target="_blank" rel="noopener" title="${esc(d)}">${inner}<span class="tg">${m.tag} ↗</span></a>`:`<div class="ic" style="--c:${cc};--g:${gg};opacity:.7">${inner}<span class="tg">${t.soon}</span></div>`}).join("");
+    return `<div class="sec">${t.mineH}</div><div class="icons ptiles">${mine}</div><div class="sec">${t.collabH}</div><p class="subt">${t.collabSub}</p><div class="icons ptiles">${COLLABS.map((c,i)=>{const [cc,gg]=cols[0],nm=c.title||`${t.collab} ${num(i)}`,d=c[lang]||"";
       return `<a class="ic" style="--c:${cc};--g:${gg}" href="${esc(c.url)}" target="_blank" rel="noopener" title="${esc(d||nm)}"><svg viewBox="0 0 40 40" aria-hidden="true">${CICONS[i%CICONS.length]}</svg><span class="nm">${esc(nm)}</span>${c.artist?`<span class="tg">${esc(c.artist)}</span>`:""}${d?`<span class="ds">${esc(d)}</span>`:`<span class="tg">${t.watch} ↗</span>`}</a>`}).join("")}</div>`}
   if(room==="work")return `<p>${t.work.intro}</p><div class="list">${t.work.items.map(([a,b])=>`<div class="row"><span class="v">${esc(a)}</span><span style="font-size:14px;opacity:.8">${esc(b)}</span></div>`).join("")}</div><p style="margin-top:16px"><b>${t.work.cta}</b></p>`;
   const L=t.lbl;
@@ -636,14 +773,21 @@ $("#veil").addEventListener("click",e=>{if(e.target.id==="veil")closeRoom()});
 $("#prompt").addEventListener("click",()=>{if(near)openRoom(near.room)});
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{if(started)goTo(b.dataset.go)}));
 if($("#lang"))$("#lang").addEventListener("click",()=>{lang=lang==="fa"?"en":"fa";save();hud();if(current)openRoom(current)});
-$("#go").addEventListener("click",()=>{started=true;$("#intro").hidden=true;burst(player.x,player.y-150,50)});
+function enterWorld(){const first=!started;started=true;panelOpen=false;$("#intro").hidden=true;if(first){burst(player.x,player.y-150,50);if(cleared){$("#toast").hidden=false;setTimeout(()=>{$("#toast").hidden=true},7000)}}}
+function openCV(){panelOpen=true;$("#intro").hidden=false;$("#go").focus()}
+$("#go").addEventListener("click",enterWorld);$("#cvclose").addEventListener("click",enterWorld);
+$("#intro").addEventListener("click",e=>{if(e.target.id==="intro")enterWorld()});
+$("#cvbtn").addEventListener("click",openCV);$("#cvWorkBtn").addEventListener("click",()=>{enterWorld();openRoom("projects")});$("#cvlang").addEventListener("click",()=>{lang=lang==="fa"?"en":"fa";save();hud()});$("#rebuild").addEventListener("click",rebuildWorld);
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#intro").hidden)enterWorld()});
 
 hud();
-const fontLoads=document.fonts?Promise.all(['40px "Lalezar"','30px "Rubik Mono One"','12px "DM Mono"','16px "Vazirmatn"'].map(f=>document.fonts.load(f).catch(()=>{}))):Promise.resolve();
+const fontLoads=document.fonts?Promise.all(['300 40px "Vazirmatn"','600 16px "Vazirmatn"','30px "Rubik Mono One"','12px "DM Mono"','16px "Vazirmatn"'].map(f=>document.fonts.load(f).catch(()=>{}))):Promise.resolve();
 Promise.all([loadImages(),Promise.race([fontLoads,new Promise(r=>setTimeout(r,1800))])]).then(()=>{
   if(IMG.fig)FWd=FH*IMG.fig.width/IMG.fig.height;
-  init3D();build();hud();$("#loading").hidden=true;
-  camX=player.x-VW/SC/2;camY=player.y-FH*.5-VH/SC/2;requestAnimationFrame(loop);
+  ldSet(.86);
+  setTimeout(()=>{init3D();build();if(got.size>=14){cleared=true;clearK=1}hud();ldSet(1);if(IMG.fig)$("#cvfig").src=IMG.fig.src;
+    camX=player.x-VW/SC/2;camY=player.y-FH*.5-VH/SC/2;requestAnimationFrame(loop);
+    setTimeout(()=>{$("#loading").classList.add("out");setTimeout(()=>{$("#loading").hidden=true},650)},450)},60);
 });
 </script>
 
