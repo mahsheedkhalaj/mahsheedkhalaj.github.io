@@ -204,7 +204,7 @@ button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
       <section class="cvmain">
         <h3 id="cvProfileH"></h3><p id="cvProfile"></p>
         <h3 id="cvExpH"></h3><ul class="tl" id="cvExp"></ul>
-        <h3 id="cvWorkH"></h3><p id="cvWorkNote"></p><button class="btn cvwb" id="cvWorkBtn" type="button"></button>
+        <h3 id="cvWorkH"></h3><p id="cvWorkNote"></p><div class="cvlinks" id="cvWorkLinks"></div><button class="btn cvwb" id="cvWorkBtn" type="button"></button>
       </section>
       <aside class="cvside">
         <h3 id="cvSkillsH"></h3><div class="chips"><span class="chip">TouchDesigner</span><span class="chip">Blender</span><span class="chip">Unity</span><span class="chip">Python</span><span class="chip">Adobe Photoshop</span><span class="chip">Adobe Illustrator</span><span class="chip">Adobe After Effects</span><span class="chip">Adobe Premiere Pro</span><span class="chip">Motion Design</span><span class="chip">Projection Mapping</span><span class="chip">MediaPipe</span><span class="chip">Sound</span></div>
@@ -245,6 +245,8 @@ const LINKS = {
   youtube: "https://www.youtube.com/@mahsheedkhalaj", youtubeLabel: "@mahsheedkhalaj",
   error403: "https://error-403-platform.github.io", error403Label: "error-403-platform.github.io",
   github: "https://github.com/error-403-platform/error-403-platform.github.io", githubLabel: "github.com/error-403-platform",
+  ad: "https://drive.google.com/file/d/1cIZTpKAbqTKYLzJ7UqQUL9_8t8WzdQJY/view?usp=sharing",
+  atoz: "https://instagram.com/_mah_sheed__",  /* replace with the direct link of the "AtoZ design" highlight */
   farzin: "https://drive.google.com/file/d/1T8YLfjuQrg4_df43LY8ti96NX7tBaZx8/view?usp=sharing"
 };
 const T = {
@@ -316,6 +318,10 @@ const T = {
 /* Collaborations — music videos on other artists' channels. Add title / artist names here */
 /* Own projects shown first in the projects panel */
 const MYWORK = [
+  {url:LINKS.ad, fa:["نمونه‌کار تبلیغاتی","نمونه‌ای از طراحی و تولید تبلیغاتی"], en:["Advertising sample","A sample of advertising design and production"], tag:"VIDEO",
+   icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 16 h6 l14 -8 v24 l-14 -8 h-6 z"/><path d="M10 24 l2 8 h4 l-2 -8"/><path d="M30 14 q4 6 0 12 M33 10 q7 10 0 20" opacity=".7"/></g>'},
+  {url:LINKS.atoz, fa:["AtoZ Design","هایلایت نمونه‌کارهای طراحی در اینستاگرام"], en:["AtoZ Design","Design portfolio highlight on Instagram"], tag:"INSTAGRAM",
+   icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="32" height="32" rx="9"/><circle cx="20" cy="20" r="7"/></g><circle cx="29" cy="11" r="1.6" fill="currentColor"/><path d="M14 31 h12" stroke="currentColor" stroke-width="1" opacity=".5"/>'},
   {url:LINKS.farzin, fa:["مینی‌گیم","بازی‌ای که به‌عنوان هدیه‌ی تولد برای یک دوست طراحی کرده‌ام؛ به همراه سورس‌کد کامل"], en:["Mini Game","A game I designed as a birthday gift for a friend, with full source code"], tag:"DOWNLOAD",
    icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 18 h28 v14 h-28 z"/><path d="M6 18 l5-5 h28 l-5 5 M34 32 l5-5 v-14"/><ellipse cx="12" cy="13.5" rx="3" ry="1.3"/><ellipse cx="20" cy="13.5" rx="3" ry="1.3"/><ellipse cx="28" cy="13.5" rx="3" ry="1.3"/><path d="M9 13.5 v-2.5 M15 13.5 v-2.5 M17 13.5 v-2.5 M23 13.5 v-2.5 M25 13.5 v-2.5 M31 13.5 v-2.5"/><ellipse cx="12" cy="11" rx="3" ry="1.3"/><ellipse cx="20" cy="11" rx="3" ry="1.3"/><ellipse cx="28" cy="11" rx="3" ry="1.3"/></g>'},
   {url:LINKS.error403, fa:["ERROR-403","پلتفرم اجرای صوتی‌تصویری"], en:["ERROR-403","Audiovisual performance platform"], tag:"WEBSITE",
@@ -714,7 +720,7 @@ function renderCV(t){
   $("#cvlinks").innerHTML=`<span dir="ltr">${esc(LINKS.email)}</span><a dir="ltr" href="${esc(LINKS.instagram)}" target="_blank" rel="noopener">Instagram ${esc(LINKS.instagramLabel)}</a><a dir="ltr" href="${esc(LINKS.youtube)}" target="_blank" rel="noopener">YouTube ${esc(LINKS.youtubeLabel)}</a><a dir="ltr" href="${esc(LINKS.error403)}" target="_blank" rel="noopener">ERROR-403</a>`;
   $("#cvProfileH").textContent=c.profileH;$("#cvProfile").textContent=c.profile;
   $("#cvExpH").textContent=c.expH;$("#cvExp").innerHTML=c.exp.map(([a,b,d])=>`<li><b>${esc(a)}</b><em>${esc(d)}</em><span>${esc(b)}</span></li>`).join("");
-  $("#cvWorkH").textContent=c.workH;$("#cvWorkNote").textContent=c.workNote;$("#cvWorkBtn").textContent=c.workBtn+(lang==="fa"?" ←":" →");
+  $("#cvWorkH").textContent=c.workH;$("#cvWorkNote").textContent=c.workNote;$("#cvWorkLinks").innerHTML=MYWORK.slice(0,2).map(m=>`<a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m[lang][0])} ↗</a>`).join("");$("#cvWorkBtn").textContent=c.workBtn+(lang==="fa"?" ←":" →");
   $("#cvSkillsH").textContent=c.skillsH;$("#cvServicesH").textContent=c.servicesH;$("#cvServices").innerHTML=c.services.map(x=>`<li>${esc(x)}</li>`).join("");
   $("#cvKeys").textContent=c.keys;$("#go").textContent=c.enter+(lang==="fa"?" ←":" →");$("#cvclose").setAttribute("aria-label",c.close);
 }
