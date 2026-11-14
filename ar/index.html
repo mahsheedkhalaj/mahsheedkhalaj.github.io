@@ -20,9 +20,9 @@
 <style>
   :root{ --ink:#141218; --paper:#f6f2ea; --pink:#ff48b0; --yellow:#ffde00; }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);
+  html,body{width:100%;height:100%;overflow:hidden;background:#000;color:var(--paper);
     font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-weight:300}
-  #ar{position:fixed;inset:0;overflow:hidden}
+  #ar{position:fixed;left:0;top:0;width:100vw;height:100vh;height:100dvh;overflow:hidden;background:#000}
 
   #intro{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;
     gap:28px;padding:calc(env(safe-area-inset-top) + 24px) 28px calc(env(safe-area-inset-bottom) + 24px);
@@ -89,9 +89,9 @@
 <div id="vids"></div>
 
 <script>
-  // show any error on screen so problems are visible on the phone
   function setStatus(text, bad){
     var s = document.getElementById('status');
+    s.onclick = null;
     s.textContent = text; s.className = 'on' + (bad ? ' bad' : '');
   }
   window.addEventListener('error', function(e){ setStatus('خطا: ' + (e.message || e), true); });
@@ -103,20 +103,21 @@ import * as THREE from 'three';
 import { MindARThree } from 'mindar-image-three';
 
 const CARDS = [
-  { img: 'media/card1.jpg', video: 'media/card1.mp4' },
-  { img: 'media/card2.jpg', video: 'media/card2.mp4' },
-  { img: 'media/card3.jpg', video: 'media/card3.mp4' },
+  { img: 'media/card1.jpg', video: 'media/card1.mp4', cover: 'media/card1_cover.png' },
+  { img: 'media/card2.jpg', video: 'media/card2.mp4', cover: 'media/card2_cover.png' },
+  { img: 'media/card3.jpg', video: 'media/card3.mp4', cover: 'media/card3_cover.png' },
 ];
-const TARGETS = 'media/targets.mind?v=3';
+const TARGETS = 'media/targets.mind?v=4';
 const $ = (id) => document.getElementById(id);
 const setStatus = window.setStatus;
 
+/* animation videos: kept inside the page (tiny) so Android keeps decoding them */
 const videos = CARDS.map(c => {
   const v = document.createElement('video');
   v.src = c.video; v.loop = true; v.muted = true; v.playsInline = true;
   v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', ''); v.setAttribute('muted', '');
   v.preload = 'auto';
-  document.getElementById('vids').appendChild(v);
+  $('vids').appendChild(v);
   v.load();
   return v;
 });
@@ -128,28 +129,63 @@ function loadImage(src) {
 $('start').addEventListener('click', async () => {
   $('start').disabled = true;
   videos.forEach(v => { const p = v.play(); if (p) p.then(() => v.pause()).catch(() => {}); });
-
-  if (!window.isSecureContext || !navigator.mediaDevices) {
-    setStatus('این صفحه باید با https باز شود.', true); return;
-  }
+  if (!window.isSecureContext || !navigator.mediaDevices) { setStatus('این صفحه باید با https باز شود.', true); return; }
   setStatus('در حال آماده‌سازی…');
   try {
-    const check = await fetch(TARGETS, { method: 'GET' });
-    if (!check.ok) { setStatus('فایل media/targets.mind پیدا نشد. آن را آپلود کنید.', true); return; }
-
+    const check = await fetch(TARGETS);
+    if (!check.ok) { setStatus('فایل media/targets.mind پیدا نشد.', true); $('start').disabled = false; return; }
     $('intro').classList.add('hide');
     await startAR();
     $('scan').classList.add('on');
-    setStatus('دوربین روشن است — دوربین را روی کارت‌پستال نگه دارید');
+    setStatus('دوربین را روی کارت‌پستال نگه دارید');
   } catch (e) {
     console.error(e);
-    const msg = String(e && (e.name || '') + ' ' + (e.message || '') || e);
+    const msg = String(e && ((e.name || '') + ' ' + (e.message || '')) || e);
     $('intro').classList.remove('hide');
     if (/NotAllowed|Permission/i.test(msg)) setStatus('اجازه‌ی دوربین داده نشد. از تنظیمات مرورگر دوربین را برای این سایت روشن کنید.', true);
     else setStatus('خطا: ' + msg, true);
     $('start').disabled = false;
   }
 });
+
+/* ---------- shader: draws only the ink of the animation on the real card.
+   Where a printed line has moved away, the real paper colour (sampled from
+   the camera around that spot) is painted in, so the print itself seems to move. */
+const VERT = `
+varying vec2 vUv;
+void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+const FRAG = `
+precision highp float;
+uniform sampler2D anim;
+uniform sampler2D cover;
+uniform sampler2D cam;
+uniform vec2 res;
+uniform float opacity;
+uniform float ringR;
+varying vec2 vUv;
+float lum(vec3 c){ return dot(c, vec3(0.299, 0.587, 0.114)); }
+void main(){
+  float ink = 1.0 - texture2D(anim, vUv).r;
+  ink = smoothstep(0.10, 0.85, ink);
+  float cov = texture2D(cover, vUv).r;
+  if (ink < 0.003 && cov < 0.003) discard;
+  vec2 suv = gl_FragCoord.xy / res;
+  vec2 rr = vec2(ringR, ringR * res.x / res.y);
+  vec3 hi = vec3(0.0); float hl = -1.0;
+  vec3 lo = vec3(1.0); float ll = 2.0;
+  for (int i = 0; i < 16; i++) {
+    float a = float(i) * 0.39269908;
+    float k = (mod(float(i), 2.0) < 0.5) ? 1.0 : 1.8;
+    vec3 s = texture2D(cam, clamp(suv + vec2(cos(a), sin(a)) * rr * k, 0.001, 0.999)).rgb;
+    float l = lum(s);
+    if (l > hl) { hl = l; hi = s; }
+    if (l < ll) { ll = l; lo = s; }
+  }
+  vec3 inkC = min(lo, vec3(0.14));
+  vec3 col = mix(hi, inkC, ink);
+  float a = max(ink, cov) * opacity;
+  gl_FragColor = vec4(col * 1.0, a);
+}`;
 
 async function startAR() {
   const mindar = new MindARThree({
@@ -160,20 +196,31 @@ async function startAR() {
     filterMinCF: 0.0001, filterBeta: 0.001,
   });
   const { renderer, scene, camera } = mindar;
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
 
   const imgs = await Promise.all(CARDS.map(c => loadImage(c.img)));
+  const loader = new THREE.TextureLoader();
+  const covers = await Promise.all(CARDS.map(c => new Promise((res, rej) => loader.load(c.cover, res, undefined, rej))));
+
+  const camTex = { value: null };
+  const resU = { value: new THREE.Vector2(1, 1) };
+
   const items = CARDS.map((c, i) => {
     const anchor = mindar.addAnchor(i);
     const aspect = imgs[i].naturalHeight / imgs[i].naturalWidth;
     const tex = new THREE.VideoTexture(videos[i]);
-    tex.colorSpace = THREE.SRGBColorSpace;
     tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter; tex.generateMipmaps = false;
-    const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0, toneMapped: false, depthWrite: false });
+    covers[i].minFilter = THREE.LinearFilter; covers[i].generateMipmaps = false;
+    const mat = new THREE.ShaderMaterial({
+      vertexShader: VERT, fragmentShader: FRAG,
+      uniforms: {
+        anim: { value: tex }, cover: { value: covers[i] }, cam: camTex, res: resU,
+        opacity: { value: 0 }, ringR: { value: 0.028 },
+      },
+      transparent: true, depthWrite: false, depthTest: false,
+    });
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, aspect), mat);
-    mesh.position.z = 0.002;
     anchor.group.add(mesh);
-    const it = { mesh, mat, video: videos[i], visible: false, target: 0, pop: 0 };
+    const it = { mat, video: videos[i], visible: false, target: 0 };
     anchor.onTargetFound = () => {
       it.visible = true; it.target = 1;
       $('scan').classList.remove('on');
@@ -183,10 +230,7 @@ async function startAR() {
     anchor.onTargetLost = () => {
       it.visible = false; it.target = 0;
       setTimeout(() => { if (!it.visible) it.video.pause(); }, 400);
-      if (!items.some(o => o.visible)) {
-        $('scan').classList.add('on');
-        setStatus('دوربین را روی کارت‌پستال نگه دارید');
-      }
+      if (!items.some(o => o.visible)) { $('scan').classList.add('on'); setStatus('دوربین را روی کارت‌پستال نگه دارید'); }
     };
     return it;
   });
@@ -196,31 +240,63 @@ async function startAR() {
     const p = v.play();
     if (p) p.then(() => {
       setTimeout(() => { if (it.visible && !v.paused) $('status').className = ''; }, 1200);
-    }).catch((err) => {
-      // browser refused autoplay: ask for one tap
+    }).catch(() => {
       const s = $('status');
       s.textContent = 'برای پخش انیمیشن اینجا ضربه بزنید';
       s.className = 'on tap';
       s.onclick = () => { s.onclick = null; s.className = ''; videos.forEach(x => x.play().catch(() => {})); };
     });
-    // diagnostics if the video still has no frames after 3 s
     setTimeout(() => {
       if (!it.visible) return;
-      if (v.error) setStatus('ویدیوی کارت ' + (i + 1) + ' باز نشد (کد ' + v.error.code + ') — فایل card' + (i + 1) + '.mp4 در پوشه‌ی ar/media هست؟', true);
-      else if (v.readyState < 2) setStatus('ویدیو هنوز در حال بارگذاری است… (' + v.readyState + ')');
+      if (v.error) setStatus('ویدیوی کارت ' + (i + 1) + ' باز نشد (کد ' + v.error.code + ')', true);
+      else if (v.readyState < 2) setStatus('ویدیو هنوز در حال بارگذاری است…');
     }, 3000);
   }
 
   await mindar.start();
 
+  /* make camera picture and 3D layer cover the whole screen, identically */
+  const camVideo = mindar.video || $('ar').querySelector('video');
+  const canvas = renderer.domElement;
+  let lastKey = '';
+  function fit() {
+    if (!camVideo || !camVideo.videoWidth) return;
+    const W = window.innerWidth, H = window.innerHeight;
+    const key = W + 'x' + H + ':' + camVideo.videoWidth + 'x' + camVideo.videoHeight;
+    if (key === lastKey) return;
+    lastKey = key;
+    const vr = camVideo.videoWidth / camVideo.videoHeight;
+    let w, h;
+    if (vr > W / H) { h = H; w = H * vr; } else { w = W; h = W / vr; }
+    for (const el of [camVideo, canvas]) {
+      el.style.position = 'absolute';
+      el.style.left = ((W - w) / 2) + 'px';
+      el.style.top = ((H - h) / 2) + 'px';
+      el.style.width = w + 'px';
+      el.style.height = h + 'px';
+      el.style.objectFit = 'fill';
+    }
+  }
+  fit();
+  window.addEventListener('resize', () => { lastKey = ''; setTimeout(fit, 60); });
+
+  if (camVideo) {
+    const ct = new THREE.VideoTexture(camVideo);
+    ct.minFilter = THREE.LinearFilter; ct.magFilter = THREE.LinearFilter; ct.generateMipmaps = false;
+    camTex.value = ct;
+  }
+
   const clock = new THREE.Clock();
+  const tmp = new THREE.Vector2();
   renderer.setAnimationLoop(() => {
+    fit();
+    renderer.getDrawingBufferSize(tmp);
+    resU.value.copy(tmp);
     const dt = Math.min(clock.getDelta(), 0.05);
     for (const it of items) {
-      it.mat.opacity += (it.target - it.mat.opacity) * Math.min(1, dt * 7);
-      it.pop += (it.target - it.pop) * Math.min(1, dt * 5);
-      const s = 0.96 + 0.04 * it.pop;
-      it.mesh.scale.set(s, s, 1);
+      const o = it.mat.uniforms.opacity;
+      const ready = it.video.readyState >= 2 && camTex.value ? 1 : 0;
+      o.value += (it.target * ready - o.value) * Math.min(1, dt * 8);
     }
     renderer.render(scene, camera);
   });
