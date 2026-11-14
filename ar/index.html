@@ -197,6 +197,7 @@ async function startAR() {
   });
   const { renderer, scene, camera } = mindar;
 
+  setStatus('۱/۳ — بارگذاری تصویرها…');
   const imgs = await Promise.all(CARDS.map(c => loadImage(c.img)));
   const loader = new THREE.TextureLoader();
   const covers = await Promise.all(CARDS.map(c => new Promise((res, rej) => loader.load(c.cover, res, undefined, rej))));
@@ -253,7 +254,10 @@ async function startAR() {
     }, 3000);
   }
 
+  setStatus('۲/۳ — روشن کردن دوربین… (اگر پیغام اجازه آمد، Allow را بزنید)');
+  const slow = setTimeout(() => setStatus('۳/۳ — آماده‌سازی موتور تشخیص… ممکن است تا یک دقیقه طول بکشد'), 6000);
   await mindar.start();
+  clearTimeout(slow);
 
   /* make camera picture and 3D layer cover the whole screen, identically */
   const camVideo = mindar.video || $('ar').querySelector('video');
