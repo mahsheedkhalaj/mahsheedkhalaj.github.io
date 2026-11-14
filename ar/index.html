@@ -103,22 +103,23 @@ import * as THREE from 'three';
 import { MindARThree } from 'mindar-image-three';
 
 const CARDS = [
-  { img: 'media/card1.jpg', video: 'media/card1.mp4', cover: 'media/card1_cover.png' },
-  { img: 'media/card2.jpg', video: 'media/card2.mp4', cover: 'media/card2_cover.png' },
-  { img: 'media/card3.jpg', video: 'media/card3.mp4', cover: 'media/card3_cover.png' },
+  { aspect: 964 / 720,  video: 'media/card1.mp4', cover: 'media/card1_cover.png?v=5' },
+  { aspect: 1040 / 720, video: 'media/card2.mp4', cover: 'media/card2_cover.png?v=5' },
+  { aspect: 1018 / 720, video: 'media/card3.mp4', cover: 'media/card3_cover.png?v=5' },
 ];
-const TARGETS = 'media/targets.mind?v=4';
+const TARGETS = 'media/targets.mind';
 const $ = (id) => document.getElementById(id);
 const setStatus = window.setStatus;
 
 /* animation videos: kept inside the page (tiny) so Android keeps decoding them */
 const videos = CARDS.map(c => {
   const v = document.createElement('video');
-  v.src = c.video; v.loop = true; v.muted = true; v.playsInline = true;
+  // no src yet: a video is only downloaded when its card is first seen
+  v.loop = true; v.muted = true; v.playsInline = true;
   v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', ''); v.setAttribute('muted', '');
   v.preload = 'auto';
+  v.dataset.src = c.video + '?v=6';
   $('vids').appendChild(v);
-  v.load();
   return v;
 });
 
@@ -128,7 +129,6 @@ function loadImage(src) {
 
 $('start').addEventListener('click', async () => {
   $('start').disabled = true;
-  videos.forEach(v => { const p = v.play(); if (p) p.then(() => v.pause()).catch(() => {}); });
   if (!window.isSecureContext || !navigator.mediaDevices) { setStatus('این صفحه باید با https باز شود.', true); return; }
   setStatus('در حال آماده‌سازی…');
   try {
@@ -197,17 +197,18 @@ async function startAR() {
   });
   const { renderer, scene, camera } = mindar;
 
-  setStatus('۱/۳ — بارگذاری تصویرها…');
-  const imgs = await Promise.all(CARDS.map(c => loadImage(c.img)));
+  setStatus('۱/۳ — آماده‌سازی…');
+  // cover masks load in the background; nothing waits for them
   const loader = new THREE.TextureLoader();
-  const covers = await Promise.all(CARDS.map(c => new Promise((res, rej) => loader.load(c.cover, res, undefined, rej))));
+  const covers = CARDS.map(c => loader.load(c.cover, undefined, undefined,
+    () => setStatus('فایل ' + c.cover.split('?')[0] + ' پیدا نشد (انیمیشن بدون آن هم پخش می‌شود)', true)));
 
   const camTex = { value: null };
   const resU = { value: new THREE.Vector2(1, 1) };
 
   const items = CARDS.map((c, i) => {
     const anchor = mindar.addAnchor(i);
-    const aspect = imgs[i].naturalHeight / imgs[i].naturalWidth;
+    const aspect = c.aspect;
     const tex = new THREE.VideoTexture(videos[i]);
     tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter; tex.generateMipmaps = false;
     covers[i].minFilter = THREE.LinearFilter; covers[i].generateMipmaps = false;
@@ -238,6 +239,7 @@ async function startAR() {
 
   function playVideo(it, i) {
     const v = it.video;
+    if (!v.src) { v.src = v.dataset.src; v.load(); setStatus('کارت ' + (i + 1) + ' پیدا شد — بارگذاری انیمیشن…'); }
     const p = v.play();
     if (p) p.then(() => {
       setTimeout(() => { if (it.visible && !v.paused) $('status').className = ''; }, 1200);
@@ -250,7 +252,7 @@ async function startAR() {
     setTimeout(() => {
       if (!it.visible) return;
       if (v.error) setStatus('ویدیوی کارت ' + (i + 1) + ' باز نشد (کد ' + v.error.code + ')', true);
-      else if (v.readyState < 2) setStatus('ویدیو هنوز در حال بارگذاری است…');
+      else if (v.readyState < 2) { setStatus('انیمیشن در حال بارگذاری است…'); v.addEventListener('canplay', () => { if (it.visible) { v.play().catch(() => {}); $('status').className = ''; } }, { once: true }); }
     }, 3000);
   }
 
