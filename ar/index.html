@@ -18,52 +18,32 @@
 }
 </script>
 <style>
-  :root{
-    --ink:#141218; --paper:#f6f2ea; --pink:#ff48b0; --yellow:#ffde00; --blue:#0078bf; --orange:#ff6c2f;
-  }
+  :root{ --ink:#141218; --paper:#f6f2ea; --pink:#ff48b0; --yellow:#ffde00; }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);
     font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-weight:300}
   #ar{position:fixed;inset:0;overflow:hidden}
-  #ar video{object-fit:cover}
 
-  /* ---------- start screen ---------- */
   #intro{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;
     gap:28px;padding:calc(env(safe-area-inset-top) + 24px) 28px calc(env(safe-area-inset-bottom) + 24px);
     background:var(--ink);transition:opacity .6s ease, visibility .6s}
   #intro.hide{opacity:0;visibility:hidden}
   .stack{position:relative;width:200px;height:230px}
-  .stack img{position:absolute;width:128px;border:6px solid var(--paper);box-shadow:0 18px 40px rgba(0,0,0,.55);
-    background:var(--paper);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .stack img{position:absolute;width:128px;border:6px solid var(--paper);box-shadow:0 18px 40px rgba(0,0,0,.55);background:var(--paper)}
   .stack img:nth-child(1){left:6px;top:28px;transform:rotate(-12deg)}
   .stack img:nth-child(2){left:66px;top:6px;transform:rotate(9deg)}
   .stack img:nth-child(3){left:36px;top:52px;transform:rotate(-2deg)}
-  #intro:hover .stack img:nth-child(1){transform:rotate(-16deg) translateX(-8px)}
   .eyebrow{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--yellow);direction:ltr}
   h1{font-weight:600;font-size:30px;line-height:1.3;text-align:center}
-  h1 span{display:block;font-family:"Space Mono",monospace;font-weight:700;font-size:15px;letter-spacing:.08em;
-    color:var(--pink);direction:ltr;margin-top:6px}
+  h1 span{display:block;font-family:"Space Mono",monospace;font-weight:700;font-size:15px;letter-spacing:.08em;color:var(--pink);direction:ltr;margin-top:6px}
   .lead{max-width:320px;text-align:center;line-height:1.9;font-size:15px;opacity:.8}
-  #start{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:17px;
-    color:var(--ink);background:var(--yellow);padding:16px 44px;border-radius:999px;
-    box-shadow:6px 6px 0 var(--pink);transition:transform .15s, box-shadow .15s}
+  #start{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:600;font-size:17px;color:var(--ink);background:var(--yellow);
+    padding:16px 44px;border-radius:999px;box-shadow:6px 6px 0 var(--pink);transition:transform .15s, box-shadow .15s}
   #start:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--pink)}
   #start[disabled]{opacity:.5}
-  .sign{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 18px);font-family:"Space Mono",monospace;
-    font-size:11px;letter-spacing:.2em;opacity:.45;direction:ltr}
+  .sign{position:absolute;bottom:calc(env(safe-area-inset-bottom) + 18px);font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.2em;opacity:.45;direction:ltr}
 
-  /* ---------- loading ---------- */
-  #load{position:fixed;inset:0;z-index:15;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;
-    background:var(--ink);text-align:center;padding:30px}
-  #load.on{display:flex}
-  .bar{width:220px;height:6px;border-radius:6px;background:rgba(246,242,234,.12);overflow:hidden}
-  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--yellow));transition:width .3s}
-  #loadText{font-size:15px;line-height:1.9;max-width:300px}
-  .small{font-size:12px;opacity:.55}
-
-  /* ---------- scanning ---------- */
-  #scan{position:fixed;inset:0;z-index:10;pointer-events:none;display:flex;align-items:center;justify-content:center;
-    opacity:0;transition:opacity .4s}
+  #scan{position:fixed;inset:0;z-index:10;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s}
   #scan.on{opacity:1}
   .frame{position:relative;width:min(64vw,330px);aspect-ratio:.72}
   .frame b{position:absolute;width:34px;height:34px;border:3px solid var(--paper)}
@@ -71,17 +51,14 @@
   .frame b:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:10px}
   .frame b:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:10px}
   .frame b:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:10px}
-  .frame .line{position:absolute;left:6%;right:6%;height:2px;top:0;background:var(--yellow);
-    box-shadow:0 0 16px var(--yellow);animation:sweep 2.2s ease-in-out infinite}
+  .frame .line{position:absolute;left:6%;right:6%;height:2px;top:0;background:var(--yellow);box-shadow:0 0 16px var(--yellow);animation:sweep 2.2s ease-in-out infinite}
   @keyframes sweep{0%,100%{top:4%}50%{top:96%}}
-  .hint{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 34px);
-    background:rgba(20,18,24,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    padding:12px 22px;border-radius:999px;font-size:14px;white-space:nowrap}
 
-  #err{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:30px;
-    background:var(--ink);text-align:center;line-height:2}
-  #err.on{display:flex}
-  #err b{color:var(--pink)}
+  #status{position:fixed;z-index:25;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 30px);
+    max-width:92vw;background:rgba(20,18,24,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    padding:11px 20px;border-radius:999px;font-size:14px;text-align:center;line-height:1.7;display:none}
+  #status.on{display:block}
+  #status.bad{border-radius:16px;background:rgba(120,10,50,.92)}
 </style>
 </head>
 <body>
@@ -101,134 +78,80 @@
   <div class="sign">MAHSHEED KHALAJ</div>
 </section>
 
-<section id="load">
-  <div class="bar"><i id="barFill"></i></div>
-  <div id="loadText">در حال آماده‌سازی…</div>
-  <div class="small" id="loadSub"></div>
-</section>
-
 <section id="scan">
   <div class="frame"><b></b><b></b><b></b><b></b><div class="line"></div></div>
-  <div class="hint">دوربین را روی کارت‌پستال نگه دارید</div>
 </section>
 
-<section id="err"><div id="errText"></div></section>
+<div id="status"></div>
+
+<script>
+  // show any error on screen so problems are visible on the phone
+  function setStatus(text, bad){
+    var s = document.getElementById('status');
+    s.textContent = text; s.className = 'on' + (bad ? ' bad' : '');
+  }
+  window.addEventListener('error', function(e){ setStatus('خطا: ' + (e.message || e), true); });
+  window.addEventListener('unhandledrejection', function(e){ setStatus('خطا: ' + (e.reason && (e.reason.message || e.reason) || e), true); });
+</script>
 
 <script type="module">
 import * as THREE from 'three';
+import { MindARThree } from 'mindar-image-three';
 
 const CARDS = [
   { img: 'media/card1.jpg', video: 'media/card1.mp4' },
   { img: 'media/card2.jpg', video: 'media/card2.mp4' },
   { img: 'media/card3.jpg', video: 'media/card3.mp4' },
 ];
-const CACHE_KEY = 'targets-v1';
-const COMPILER_URL = 'https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js';
-
+const TARGETS = 'media/targets.mind?v=3';
 const $ = (id) => document.getElementById(id);
-const showError = (html) => { $('errText').innerHTML = html; $('err').classList.add('on'); };
+const setStatus = window.setStatus;
 
-/* ---------- small IndexedDB cache for compiled targets ---------- */
-function idb() {
-  return new Promise((res, rej) => {
-    try {
-      const r = indexedDB.open('ar-postcards', 1);
-      r.onupgradeneeded = () => r.result.createObjectStore('kv');
-      r.onsuccess = () => res(r.result);
-      r.onerror = () => rej(r.error);
-    } catch (e) { rej(e); }
-  });
-}
-async function cacheGet(key) {
-  try {
-    const db = await idb();
-    return await new Promise((res) => {
-      const q = db.transaction('kv').objectStore('kv').get(key);
-      q.onsuccess = () => res(q.result || null); q.onerror = () => res(null);
-    });
-  } catch { return null; }
-}
-async function cacheSet(key, val) {
-  try {
-    const db = await idb();
-    db.transaction('kv', 'readwrite').objectStore('kv').put(val, key);
-  } catch {}
-}
+const videos = CARDS.map(c => {
+  const v = document.createElement('video');
+  v.src = c.video; v.loop = true; v.muted = true; v.playsInline = true;
+  v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', ''); v.setAttribute('muted', '');
+  v.preload = 'auto';
+  return v;
+});
 
 function loadImage(src) {
   return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
 }
 
-/* ---------- compile postcard images into a tracking file (first visit only) ---------- */
-async function getTargets() {
-  const cached = await cacheGet(CACHE_KEY);
-  if (cached) return cached;
-  $('loadText').textContent = 'آماده‌سازی کارت‌ها برای اولین بار…';
-  $('loadSub').textContent = 'فقط بار اول کمی طول می‌کشد';
-  const mod = await import(COMPILER_URL);
-  const Compiler = mod.Compiler || (window.MINDAR && window.MINDAR.IMAGE && window.MINDAR.IMAGE.Compiler);
-  if (!Compiler) throw new Error('compiler not found');
-  const images = await Promise.all(CARDS.map(c => loadImage(c.img)));
-  const compiler = new Compiler();
-  await compiler.compileImageTargets(images, (p) => {
-    $('barFill').style.width = Math.min(100, p).toFixed(0) + '%';
-  });
-  const buffer = await compiler.exportData();
-  await cacheSet(CACHE_KEY, buffer);
-  return buffer;
-}
-
-/* ---------- videos (unlocked inside the tap) ---------- */
-const videos = CARDS.map(c => {
-  const v = document.createElement('video');
-  v.src = c.video; v.loop = true; v.muted = true; v.playsInline = true;
-  v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', ''); v.setAttribute('muted', '');
-  v.preload = 'auto'; v.crossOrigin = 'anonymous';
-  return v;
-});
-
 $('start').addEventListener('click', async () => {
   $('start').disabled = true;
-  // iOS needs play() to be called directly from the tap
   videos.forEach(v => { const p = v.play(); if (p) p.then(() => v.pause()).catch(() => {}); });
 
   if (!window.isSecureContext || !navigator.mediaDevices) {
-    showError('این صفحه باید با آدرس <b>https</b> باز شود تا دوربین کار کند.');
-    return;
+    setStatus('این صفحه باید با https باز شود.', true); return;
   }
-  $('intro').classList.add('hide');
-  $('load').classList.add('on');
-  $('barFill').style.width = '8%';
-
+  setStatus('در حال آماده‌سازی…');
   try {
-    const buffer = await getTargets();
-    $('loadText').textContent = 'روشن کردن دوربین…';
-    $('loadSub').textContent = '';
-    $('barFill').style.width = '100%';
-    await startAR(buffer);
-    $('load').classList.remove('on');
+    const check = await fetch(TARGETS, { method: 'GET' });
+    if (!check.ok) { setStatus('فایل media/targets.mind پیدا نشد. آن را آپلود کنید.', true); return; }
+
+    $('intro').classList.add('hide');
+    await startAR();
     $('scan').classList.add('on');
+    setStatus('دوربین روشن است — دوربین را روی کارت‌پستال نگه دارید');
   } catch (e) {
     console.error(e);
-    const msg = String(e && (e.name || e.message) || e);
-    if (/NotAllowed|Permission/i.test(msg)) {
-      showError('اجازه‌ی دسترسی به دوربین داده نشد.<br>از تنظیمات مرورگر دسترسی دوربین را برای این سایت روشن کنید و صفحه را دوباره باز کنید.');
-    } else {
-      showError('مشکلی پیش آمد. اینترنت را چک کنید و صفحه را دوباره باز کنید.<br><span class="small">' + msg + '</span>');
-    }
+    const msg = String(e && (e.name || '') + ' ' + (e.message || '') || e);
+    $('intro').classList.remove('hide');
+    if (/NotAllowed|Permission/i.test(msg)) setStatus('اجازه‌ی دوربین داده نشد. از تنظیمات مرورگر دوربین را برای این سایت روشن کنید.', true);
+    else setStatus('خطا: ' + msg, true);
+    $('start').disabled = false;
   }
 });
 
-async function startAR(buffer) {
-  const { MindARThree } = await import('mindar-image-three');
-  const url = URL.createObjectURL(new Blob([buffer]));
+async function startAR() {
   const mindar = new MindARThree({
     container: $('ar'),
-    imageTargetSrc: url,
+    imageTargetSrc: TARGETS,
     maxTrack: 1,
     uiLoading: 'no', uiScanning: 'no', uiError: 'no',
-    filterMinCF: 0.0001, filterBeta: 0.001,   // steadier overlay, less jitter
-    warmupTolerance: 2, missTolerance: 6,
+    filterMinCF: 0.0001, filterBeta: 0.001,
   });
   const { renderer, scene, camera } = mindar;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -244,16 +167,21 @@ async function startAR(buffer) {
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, aspect), mat);
     mesh.position.z = 0.002;
     anchor.group.add(mesh);
-    const it = { anchor, mesh, mat, video: videos[i], visible: false, target: 0, pop: 0 };
+    const it = { mesh, mat, video: videos[i], visible: false, target: 0, pop: 0 };
     anchor.onTargetFound = () => {
       it.visible = true; it.target = 1;
       it.video.play().catch(() => {});
       $('scan').classList.remove('on');
+      setStatus('کارت ' + (i + 1) + ' پیدا شد');
+      setTimeout(() => { if (it.visible) $('status').className = ''; }, 1500);
     };
     anchor.onTargetLost = () => {
       it.visible = false; it.target = 0;
       setTimeout(() => { if (!it.visible) it.video.pause(); }, 400);
-      if (!items.some(o => o.visible)) $('scan').classList.add('on');
+      if (!items.some(o => o.visible)) {
+        $('scan').classList.add('on');
+        setStatus('دوربین را روی کارت‌پستال نگه دارید');
+      }
     };
     return it;
   });
@@ -264,19 +192,15 @@ async function startAR(buffer) {
   renderer.setAnimationLoop(() => {
     const dt = Math.min(clock.getDelta(), 0.05);
     for (const it of items) {
-      // smooth fade + gentle "lift" when the card is found
       it.mat.opacity += (it.target - it.mat.opacity) * Math.min(1, dt * 7);
       it.pop += (it.target - it.pop) * Math.min(1, dt * 5);
       const s = 0.96 + 0.04 * it.pop;
       it.mesh.scale.set(s, s, 1);
-      it.mesh.position.z = 0.002 + 0.01 * Math.sin(it.pop * Math.PI);
     }
     renderer.render(scene, camera);
   });
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) videos.forEach(v => v.pause());
-  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) videos.forEach(v => v.pause()); });
 }
 </script>
 </body>
