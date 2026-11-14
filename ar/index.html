@@ -59,6 +59,9 @@
     padding:11px 20px;border-radius:999px;font-size:14px;text-align:center;line-height:1.7;display:none}
   #status.on{display:block}
   #status.bad{border-radius:16px;background:rgba(120,10,50,.92)}
+  #status.tap{pointer-events:auto;cursor:pointer;background:var(--yellow);color:var(--ink);font-weight:600}
+  #vids{position:fixed;left:0;top:0;width:2px;height:2px;overflow:hidden;opacity:.01;pointer-events:none;z-index:1}
+  #vids video{width:2px;height:2px}
 </style>
 </head>
 <body>
@@ -83,6 +86,7 @@
 </section>
 
 <div id="status"></div>
+<div id="vids"></div>
 
 <script>
   // show any error on screen so problems are visible on the phone
@@ -112,6 +116,8 @@ const videos = CARDS.map(c => {
   v.src = c.video; v.loop = true; v.muted = true; v.playsInline = true;
   v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', ''); v.setAttribute('muted', '');
   v.preload = 'auto';
+  document.getElementById('vids').appendChild(v);
+  v.load();
   return v;
 });
 
@@ -170,10 +176,9 @@ async function startAR() {
     const it = { mesh, mat, video: videos[i], visible: false, target: 0, pop: 0 };
     anchor.onTargetFound = () => {
       it.visible = true; it.target = 1;
-      it.video.play().catch(() => {});
       $('scan').classList.remove('on');
       setStatus('کارت ' + (i + 1) + ' پیدا شد');
-      setTimeout(() => { if (it.visible) $('status').className = ''; }, 1500);
+      playVideo(it, i);
     };
     anchor.onTargetLost = () => {
       it.visible = false; it.target = 0;
@@ -185,6 +190,26 @@ async function startAR() {
     };
     return it;
   });
+
+  function playVideo(it, i) {
+    const v = it.video;
+    const p = v.play();
+    if (p) p.then(() => {
+      setTimeout(() => { if (it.visible && !v.paused) $('status').className = ''; }, 1200);
+    }).catch((err) => {
+      // browser refused autoplay: ask for one tap
+      const s = $('status');
+      s.textContent = 'برای پخش انیمیشن اینجا ضربه بزنید';
+      s.className = 'on tap';
+      s.onclick = () => { s.onclick = null; s.className = ''; videos.forEach(x => x.play().catch(() => {})); };
+    });
+    // diagnostics if the video still has no frames after 3 s
+    setTimeout(() => {
+      if (!it.visible) return;
+      if (v.error) setStatus('ویدیوی کارت ' + (i + 1) + ' باز نشد (کد ' + v.error.code + ') — فایل card' + (i + 1) + '.mp4 در پوشه‌ی ar/media هست؟', true);
+      else if (v.readyState < 2) setStatus('ویدیو هنوز در حال بارگذاری است… (' + v.readyState + ')');
+    }, 3000);
+  }
 
   await mindar.start();
 
