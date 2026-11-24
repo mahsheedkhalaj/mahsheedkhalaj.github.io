@@ -123,12 +123,12 @@ button:focus-visible{outline:2px dashed var(--teal);outline-offset:3px}
 .ic .n{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em}
 .ic .a{font-size:11px;opacity:.75;max-width:90%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ic:hover{border-color:rgba(242,235,224,.7);background:rgba(242,235,224,.03);transform:translateY(-2px)}
-.ptiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
-.ptiles .ic{aspect-ratio:auto;min-height:132px;padding:16px 8px 12px;color:var(--c)}
-.ptiles .ic svg{width:46px;height:46px}
-.ptiles .ic .nm{font-weight:800;font-size:13px;text-align:center;color:var(--bone);line-height:1.4;text-wrap:balance}
-.ptiles .ic .ds{font-size:11.5px;line-height:1.6;opacity:.75;text-align:center;padding-inline:4px}
-.ptiles .ic .tg{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;text-align:center}
+.ptiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:210px;gap:12px}
+.ptiles .ic{aspect-ratio:auto;height:100%;box-sizing:border-box;justify-content:flex-start;padding:22px 10px 14px;color:var(--c)}
+.ptiles .ic svg{width:42px;height:42px;flex:0 0 42px;margin-bottom:6px}
+.ptiles .ic .nm{font-weight:800;font-size:13px;text-align:center;color:var(--bone);line-height:1.35;text-wrap:balance;min-height:2.7em;display:flex;align-items:center}
+.ptiles .ic .ds{font-size:11.5px;line-height:1.55;opacity:.75;text-align:center;padding-inline:4px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ptiles .ic .tg{margin-top:auto;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;text-align:center}
 .inl{color:var(--teal);font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 .inl:hover{color:var(--orange)}
 .list{display:flex;flex-direction:column;margin-top:6px}
@@ -503,9 +503,9 @@ const T = {
 /* Collaborations — music videos on other artists' channels. Add title / artist names here */
 /* Own projects shown first in the projects panel */
 const MYWORK = [
-  {url:LINKS.nam, fa:["نم — بازی ابری","بازی وب سه‌بعدی چندنفره با زیبایی‌شناسی پیکسلی؛ ابری که با حلقه‌ی باران زمین را زنده می‌کند. ساخته‌شده برای مسابقه‌ی Edge Games آروان‌کلاد"], en:["Nam — cloud game","Multiplayer 3D web game in a coarse pixel style: a cloud that brings land back to life by closing rain loops. Built for ArvanCloud Edge Games"], tag:"PLAY",
+  {url:LINKS.nam, fa:["نم — بازی ابری","بازی وب سه‌بعدی و چندنفره؛ ابری که با حلقه‌ی باران زمین را زنده می‌کند"], en:["Nam — cloud game","Multiplayer 3D web game: a cloud revives the land with rain loops"], tag:"PLAY",
    icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 24 a6 6 0 0 1 2-11.6 a8 8 0 0 1 15.2 1.6 a5 5 0 0 1 3.8 10 z"/><path d="M13 29 l-1.5 4 M20 29 l-1.5 4 M27 29 l-1.5 4"/></g>'},
-  {url:LINKS.portfolio, fa:["پورتفولیوی گرافیک دیزاین","هویت بصری، کمپین تبلیغاتی و طراحی اینستاگرام برای برندهای عطر، زیبایی، قهوه و پوشاک؛ فایل PDF"], en:["Graphic design portfolio","Visual identity, advertising campaigns and Instagram design for fragrance, beauty, coffee and fashion brands (PDF)"], tag:"PDF",
+  {url:LINKS.portfolio, fa:["پورتفولیوی گرافیک","هویت بصری، کمپین تبلیغاتی و طراحی اینستاگرام برای برندها"], en:["Graphic portfolio","Visual identity, ad campaigns and Instagram design for brands"], tag:"PDF",
    icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 4 h14 l8 8 v24 h-22 z"/><path d="M24 4 v8 h8"/><path d="M15 20 h12 M15 25 h12 M15 30 h7"/></g>'},
   {url:LINKS.ad, fa:["نمونه‌کار تبلیغاتی","نمونه‌ای از طراحی و تولید تبلیغاتی"], en:["Advertising sample","A sample of advertising design and production"], tag:"VIDEO",
    icon:'<g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 16 h6 l14 -8 v24 l-14 -8 h-6 z"/><path d="M10 24 l2 8 h4 l-2 -8"/><path d="M30 14 q4 6 0 12 M33 10 q7 10 0 20" opacity=".7"/></g>'},
